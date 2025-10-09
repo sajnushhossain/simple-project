@@ -21,7 +21,7 @@
                 @endforeach
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <a href="/blog" class="btn">Load More</a>
+                <a href="/blog" class="btn-hero">Load More</a>
             </div>
         </div>
     </div>

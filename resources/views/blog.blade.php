@@ -12,10 +12,21 @@
                     </div>
                     <div style="background-color: #f8f9fa; padding: 10px 20px; font-size: 14px; color: #6c757d;">
                         Posted on {{ $post->created_at->format('F j, Y') }} by
-                        <a href="#">{{ $post->author->name }}</a>
+                        @if ($post->author)
+                            <a href="#">{{ $post->author->name }}</a>
+                        @else
+                            <span>Anonymous</span>
+                        @endif
                     </div>
                 </div>
             @endforeach
         </div>
+        <div class="d-flex justify-content-center">
+            {{ $posts->links() }}
+        </div>
     </div>
 </x-layout>
+
+
+
+

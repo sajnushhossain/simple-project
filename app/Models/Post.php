@@ -10,7 +10,9 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'body', 'image'];
+    protected $fillable = ['title', 'slug', 'body', 'image', 'user_id'];
+
+    protected $with = ['author'];
 
     public function author()
     {

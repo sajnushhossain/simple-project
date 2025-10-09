@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container">
-        <div style="max-width: 500px; margin: 0 auto;">
+    <div style="max-width: 850px; margin: 0 auto; width: 100%; align-items: center; justify-content: center; display: flex; min-height: 100vh;">
             <div class="login-card">
                 <div style="text-align: center; margin-bottom: 40px;">
                     <a href="/" style="font-size: 32px; font-weight: bold; color: #2fa4e7; text-decoration: none;">Simple Blog</a>

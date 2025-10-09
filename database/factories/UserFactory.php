@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('admin '),
+            'password' => static::$password ??= Hash::make('admin'),
             'remember_token' => Str::random(10),
         ];
     }
@@ -42,3 +42,6 @@ class UserFactory extends Factory
         ]);
     }
 }
+
+
+// read the complete website and fix the design properly please   

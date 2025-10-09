@@ -9,17 +9,25 @@
                     @csrf
                     <div style="margin-bottom: 20px;">
                         <label for="title" style="display: block; font-weight: bold; margin-bottom: 5px;">Title</label>
-                        <input type="text" id="title" name="title" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <input type="text" id="title" name="title" required
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <label for="body" style="display: block; font-weight: bold; margin-bottom: 5px;">Description</label>
-                        <textarea id="body" name="body" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                        <label for="body"
+                            style="display: block; font-weight: bold; margin-bottom: 5px;">Description</label>
+                        <textarea id="body" name="body" rows="5" required
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <label for="image" style="display: block; font-weight: bold; margin-bottom: 5px;">Title Image</label>
-                        <input type="file" id="image" name="image" style="width: 100%;">
+                        <label for="image" style="display: block; font-weight: bold; margin-bottom: 5px;">Title
+                            Image</label>
+
+                        <div class="mb-3">
+                            <input class="form-control" type="file" id="image" name="image" style="width: 100%;">
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 10px; font-size: 16px;">Upload</button>
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; padding: 10px; font-size: 16px;">Upload</button>
                 </form>
             </div>
         </div>
