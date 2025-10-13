@@ -26,10 +26,10 @@
                                 </div>
                             </a>
                             @if($post->category)
-                            <a href="#" class="text-xs font-semibold text-red-700 hover:underline uppercase tracking-wider">{{ $post->category->name }}</a>
+                            <a href="#" class="text-xs font-semibold text-sky-700 hover:underline uppercase tracking-wider">{{ $post->category->name }}</a>
                             @endif
                             <h3 class="text-2xl font-bold text-gray-900 mt-2 mb-3">
-                                <a href="/post/{{ $post->slug }}" class="hover:text-red-700 transition-colors duration-300">{{ $post->title }}</a>
+                                <a href="/post/{{ $post->slug }}" class="hover:text-sky-700 transition-colors duration-300">{{ $post->title }}</a>
                             </h3>
                             <p class="text-gray-600 leading-relaxed mb-4">
                                 {{ Str::limit(strip_tags($post->body), 150) }}
@@ -37,7 +37,7 @@
                             <div class="text-sm text-gray-500">
                                 <span>{{ $post->created_at->format('M d, Y') }}</span>
                                 <span class="mx-2">&bull;</span>
-                                <a href="/post/{{ $post->slug }}" class="text-red-700 hover:underline font-semibold">Read More</a>
+                                <a href="/post/{{ $post->slug }}" class="text-sky-700 hover:underline font-semibold">Read More</a>
                             </div>
                         </div>
                     @endforeach

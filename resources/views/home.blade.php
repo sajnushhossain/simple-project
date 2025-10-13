@@ -23,7 +23,7 @@
                 <div class="lead-story mb-8">
                     <a href="/post/{{ $lead->slug }}" class="block mb-8">
                         <img class="w-full h-auto object-cover rounded-lg shadow-lg mb-4" src="{{ $lead->image ? asset('storage/' . $lead->image) : 'https://placehold.co/1200x600/1e293b/94a3b8?text=Lead+Story' }}" alt="{{ $lead->title }}">
-                        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 hover:text-red-600 transition duration-300">{{ $lead->title }}</h1>
+                        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 hover:text-sky-600 transition duration-300">{{ $lead->title }}</h1>
                         <p class="text-gray-600 mt-4 text-xl">{{ Str::limit(strip_tags($lead->body), 300) }}</p>
                     </a>
                     <hr class="my-8">
@@ -33,7 +33,7 @@
                     <div class="mb-6 pb-6 border-b">
                         <a href="/post/{{ $post->slug }}">
                             <img class="w-full h-48 object-cover rounded-lg mb-3" src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/400x250/1e293b/94a3b8?text=Sub+Lead' }}" alt="{{ $post->title }}">
-                            <h3 class="text-2xl font-semibold text-gray-800 hover:text-red-600 transition duration-300">{{ $post->title }}</h3>
+                            <h3 class="text-2xl font-semibold text-gray-800 hover:text-sky-600 transition duration-300">{{ $post->title }}</h3>
                             <p class="text-gray-600 mt-2">{{ Str::limit(strip_tags($post->body), 150) }}</p>
                         </a>
                     </div>
@@ -42,7 +42,7 @@
                 @foreach($topStories as $post)
                     <div class="border-b py-4">
                         <a href="/post/{{ $post->slug }}">
-                            <h3 class="text-xl font-semibold text-gray-800 hover:text-red-600 transition duration-300">{{ $post->title }}</h3>
+                            <h3 class="text-xl font-semibold text-gray-800 hover:text-sky-600 transition duration-300">{{ $post->title }}</h3>
                             <p class="text-gray-600 mt-2">{{ Str::limit(strip_tags($post->body), 100) }}</p>
                         </a>
                     </div>
@@ -57,7 +57,7 @@
                         <div>
                             <a href="/post/{{ $post->slug }}">
                                 <img class="w-full h-48 object-cover rounded-lg shadow-md" src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/300x200/1e293b/94a3b8?text=News' }}" alt="{{ $post->title }}">
-                                <h3 class="text-lg font-semibold mt-3 text-gray-800 hover:text-red-600 transition duration-300">{{ $post->title }}</h3>
+                                <h3 class="text-lg font-semibold mt-3 text-gray-800 hover:text-sky-600 transition duration-300">{{ $post->title }}</h3>
                             </a>
                         </div>
                     @endforeach
@@ -74,7 +74,7 @@
                                 <div>
                                     <a href="/post/{{ $post->slug }}">
                                         <img class="w-full h-48 object-cover rounded-lg shadow-md" src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/300x200/1e293b/94a3b8?text=News' }}" alt="{{ $post->title }}">
-                                        <h3 class="text-lg font-semibold mt-3 text-gray-800 hover:text-red-600 transition duration-300">{{ $post->title }}</h3>
+                                        <h3 class="text-lg font-semibold mt-3 text-gray-800 hover:text-sky-600 transition duration-300">{{ $post->title }}</h3>
                                     </a>
                                 </div>
                             @endforeach
