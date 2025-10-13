@@ -6,13 +6,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $posts = Post::latest()->take(3)->get();
+use App\Http\Controllers\PageController;
 
-    return view('home', compact('posts'));
-});
+Route::get('/about', [PageController::class, 'about']);
 
-Route::get('/blog', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index']);
+
+Route::get('/blog', [PostController::class, 'blog']);
 Route::get('/post/{post:slug}', [PostController::class, 'show']);
 Route::get('/search', [PostController::class, 'search']);
 

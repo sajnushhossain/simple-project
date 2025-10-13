@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+
+use App\Http\View\Composers\CategoryComposer;
+use App\Http\View\Composers\HeaderComposer;
 use App\View\Components\Header;
 use App\Http\View\Composers\NavigationComposer;
+use App\Http\View\Composers\PostComposer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
@@ -26,9 +30,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::unguard();
-        Paginator::useBootstrap();
 
         Blade::component('header', Header::class);
         View::composer('components.navigation', NavigationComposer::class);
+        View::composer('components.header', HeaderComposer::class);
+        View::composer('components.layout', CategoryComposer::class);
     }
 }

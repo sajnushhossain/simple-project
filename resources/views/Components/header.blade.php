@@ -1,4 +1,3 @@
-@props(['headerPosts'])
 <header class="bg-surface border-b border-border header-shadow sticky top-0 z-50">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
@@ -8,8 +7,13 @@
             </a>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8">
-                <x-navigation />
+            <div class="hidden md:flex items-center space-x-8 relative" id="desktop-menu-container">
+                <!-- <button id="desktop-menu-toggle" class="text-text hover:text-primary transition-colors duration-200 font-medium flex items-center">
+                    Menu <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                </button> -->
+                <div id="desktop-menu" class="top-full right-0 mt-2 ml-20 shadow-lg rounded-lg p-4 z-50">
+                    <x-navigation />
+                </div>
             </div>
 
             <!-- Header Actions -->
@@ -43,10 +47,7 @@
                     </a>
                 @endauth
 
-                <!-- Theme Toggle (Hidden for light theme) -->
-                <!-- <button id="theme-toggle" class="text-text hover:text-primary transition-colors duration-200 text-lg" aria-label="Toggle theme">
-                    <i class="fa-solid fa-moon"></i>
-                </button> -->
+                
 
                 <!-- Mobile Menu Button -->
                 <button class="md:hidden text-text hover:text-primary text-2xl" id="hamburger-menu" aria-label="Toggle menu">

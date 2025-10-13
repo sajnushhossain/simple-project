@@ -70,7 +70,7 @@
 
             <!-- Pagination -->
             <div class="mt-12">
-                {{ $posts->links() }}
+                {{ $posts->appends(['query' => $query])->links('vendor.pagination.tailwind') }}
             </div>
         @endif
     </div>

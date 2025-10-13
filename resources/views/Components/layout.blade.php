@@ -1,4 +1,3 @@
-@props(['posts'])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/newspaper.css') }}">
     @vite('resources/css/app.css')
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body class="bg-bg text-text font-sans antialiased {{ request()->is('login') ? 'bg-white' : '' }}">
     @if(!request()->is('login'))
-        <x-header :header-posts="$posts->take(3)" />
+        <x-header />
     @endif
 
     <main class="container mx-auto px-4 py-8">
@@ -28,8 +29,8 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <!-- Brand Section -->
                 <div class="md:col-span-1">
-                    <a href="/" class="text-2xl font-bold text-white hover:text-primary transition-colors duration-300 inline-flex items-center mb-4">
-                        <i class="fas fa-newspaper mr-2"></i>Simple News
+                    <a href="/" class="text-2xl font-bold text-black hover:text-primary transition-colors duration-300 inline-flex items-center mb-4">
+                        <i class="fas fa-newspaper mr-2 text-black hover:text-primary transition-colors"></i>Simple News
                     </a>
                     <p class="text-muted text-sm leading-relaxed">
                         Your trusted source for breaking news, in-depth analysis, and compelling stories from around the world.
@@ -38,7 +39,7 @@
 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-white font-bold mb-4 text-lg">Quick Links</h3>
+                    <h3 class="text-black font-bold mb-4 text-lg">Quick Links</h3>
                     <ul class="space-y-2">
                         <li><a href="/" class="text-muted hover:text-primary transition-colors duration-200">Home</a></li>
                         <li><a href="/blog" class="text-muted hover:text-primary transition-colors duration-200">Blog</a></li>
@@ -48,27 +49,29 @@
                 </div>
 
                 <!-- Categories -->
-                <div>
-                    <h3 class="text-white font-bold mb-4 text-lg">Categories</h3>
-                    <ul class="space-y-2">
-                        @foreach($posts->take(4) as $post)
-                            @if($post->category)
-                            <li><a href="/blog?category={{ $post->category->slug }}" class="text-muted hover:text-primary transition-colors duration-200">{{ $post->category->name }}</a></li>
-                            @endif
+                <div class="relative" x-data="{ open: false }">
+                    <h3 class="text-black font-bold mb-4 text-lg">Categories</h3>
+                    <button @click="open = !open" class="text-muted hover:text-primary transition-colors duration-200 flex items-center justify-content gap-x-2 w-full">
+                        <span>Select Category</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300" :class="{ 'rotate-180': open }"></i>
+                    </button>
+                    <ul x-show="open" @click.away="open = false" class="absolute bottom-full left-0 w-full bg-surface border border-border rounded-lg shadow-lg py-2 z-10 space-y-2" style="display: none;">
+                        @foreach($categories as $category)
+                            <li><a href="/blog?category={{ $category->slug }}" class="block px-4 py-2 text-muted hover:text-primary hover:bg-bg transition-colors duration-200">{{ $category->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
 
                 <!-- Newsletter -->
                 <div>
-                    <h3 class="text-white font-bold mb-4 text-lg">Stay Connected</h3>
+                    <h3 class="text-black font-bold mb-4 text-lg">Stay Connected</h3>
                     <p class="text-muted text-sm mb-4">Subscribe to our newsletter for the latest updates.</p>
-                    <form class="flex gap-2 mb-4">
+                    <!-- <form class="flex gap-2 mb-4">
                         <input type="email" placeholder="Your email" class="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:ring-2 focus:ring-primary" required>
                         <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-300">
                             <i class="fas fa-paper-plane"></i>
                         </button>
-                    </form>
+                    </form> -->
                     <div class="flex gap-3">
                         <a href="#" class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
                             <i class="fab fa-facebook-f"></i>

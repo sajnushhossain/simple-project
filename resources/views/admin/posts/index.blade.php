@@ -1,4 +1,4 @@
-<x-layout :posts="[]">
+<x-layout>
     <div class="container mx-auto px-4 pt-10">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-4xl font-bold text-gray-900">Admin Dashboard</h1>
@@ -50,7 +50,7 @@
                     </table>
                 </div>
                 <div class="mt-8">
-                    {{ $posts->links() }}
+                    {{ $posts->links('vendor.pagination.tailwind') }}
                 </div>
             </div>
         </div>

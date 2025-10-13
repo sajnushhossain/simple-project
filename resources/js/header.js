@@ -48,6 +48,24 @@ if (searchIcon && searchForm) {
     });
 }
 
+// Desktop Menu Toggle
+const desktopMenuToggle = document.getElementById('desktop-menu-toggle');
+const desktopMenu = document.getElementById('desktop-menu');
+
+if (desktopMenuToggle && desktopMenu) {
+    desktopMenuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        desktopMenu.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!desktopMenu.contains(e.target) && e.target !== desktopMenuToggle) {
+            desktopMenu.classList.add('hidden');
+        }
+    });
+}
+
 // Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle?.querySelector('i');

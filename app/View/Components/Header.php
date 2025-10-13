@@ -6,16 +6,14 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
-    public $headerPosts;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($headerPosts)
+    public function __construct()
     {
-        $this->headerPosts = $headerPosts;
+        //
     }
 
     /**

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #f0f9ff;
-  --color-surface: #ffffff;
-  --color-surface-2: #e0f2fe;
+  --color-bg: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-2: #f1f5f9;
   --color-card: #ffffff;
   --color-text: #0f172a;
   --color-muted: #64748b;
-  --color-light-text: #475569;
-  --color-accent: #0ea5e9;
+  --color-light-text: #94a3b8;
+  --color-accent: #38bdf8;
   --color-primary: #0ea5e9;
   --color-primary-700: #0284c7;
   --color-primary-900: #075985;
@@ -18,9 +18,9 @@
   
   --border-radius: 12px;
   
-  --shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
-  --shadow-lg: 0 20px 40px rgba(2, 6, 23, 0.45);
-  --shadow-2xl: 0 25px 50px rgba(2, 6, 23, 0.55);
+  --shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
+  --shadow-lg: 0 20px 40px rgba(14, 165, 233, 0.15);
+  --shadow-2xl: 0 25px 50px rgba(14, 165, 233, 0.2);
   
   --animate-ticker: ticker 40s linear infinite;
   
@@ -30,7 +30,7 @@
   }
 }
 
-/* Custom Styles for Dark Theme News Site */
+/* Custom Styles for Light Theme News Site */
 
 @layer base {
   body {
@@ -44,23 +44,13 @@
 }
 
 @layer components {
-  /* Header Styling */
-  .header-shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  }
-
   /* Card Hover Effects */
   .card-hover {
     @apply transition-all duration-300 ease-in-out;
   }
   
   .card-hover:hover {
-    @apply transform -translate-y-1 shadow-2xl;
-  }
-
-  /* Gradient Overlays */
-  .gradient-overlay {
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.7) 50%, rgba(15, 23, 42, 0.95) 100%);
+    @apply transform -translate-y-1 shadow-lg;
   }
 
   /* Button Styles */
@@ -100,21 +90,21 @@
 
   /* Post Card Styles */
   .post-card {
-    @apply bg-surface-2 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+    @apply bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   /* Typography */
   .heading-primary {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight;
   }
 
   .heading-secondary {
-    @apply text-2xl md:text-3xl font-bold text-white mb-6;
+    @apply text-2xl md:text-3xl font-bold text-slate-800 mb-6;
   }
 
   /* Navigation Active State */
   .nav-link {
-    @apply text-white hover:text-primary transition-colors duration-200 font-medium;
+    @apply text-slate-600 hover:text-primary transition-colors duration-200 font-medium;
   }
 
   .nav-link.active {
@@ -123,15 +113,6 @@
 }
 
 @layer utilities {
-  /* Text Shadows */
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 4px 8px rgba(0, 0, 0, 0.4);
-  }
-
-  .text-shadow-lg {
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 8px 16px rgba(0, 0, 0, 0.6);
-  }
-
   /* Scrollbar Styling */
   .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
@@ -149,4 +130,27 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-primary-700;
   }
+}
+
+.newspaper-layout {
+    column-count: 3;
+    column-gap: 2rem;
+    column-rule: 1px solid #e5e7eb;
+}
+
+.newspaper-layout .lead-story {
+    column-span: all;
+}
+
+.newspaper-layout h1, .newspaper-layout h2, .newspaper-layout h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+.newspaper-layout .section-title {
+    border-bottom: 2px solid #1f2937;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
 }

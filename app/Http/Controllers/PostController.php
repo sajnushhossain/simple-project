@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
+    {
+        $posts = Post::latest()->take(10)->get();
+        $categories = Category::all();
+
+        return view('home', compact('posts', 'categories'));
+    }
+
+    public function blog()
     {
         $posts = Post::latest()->paginate(9);
 
