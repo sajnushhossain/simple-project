@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,8 +20,8 @@ class AdminPostController extends Controller
 
     public function create()
     {
-        $posts = Post::all();
-        return view('admin.posts.create', compact('posts'));
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -29,6 +30,7 @@ class AdminPostController extends Controller
             'title' => 'required',
             'body' => 'required',
             'image' => 'image',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         if ($request->hasFile('image')) {
@@ -45,8 +47,8 @@ class AdminPostController extends Controller
 
     public function edit(Post $post)
     {
-        $posts = Post::all();
-        return view('admin.posts.edit', ['post' => $post, 'posts' => $posts]);
+        $categories = Category::all();
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     public function update(Request $request, Post $post)
@@ -55,6 +57,7 @@ class AdminPostController extends Controller
             'title' => 'required',
             'body' => 'required',
             'image' => 'image',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         if ($request->hasFile('image')) {

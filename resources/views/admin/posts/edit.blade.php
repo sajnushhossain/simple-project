@@ -16,6 +16,20 @@
                     </div>
 
                     <div>
+                        <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
+                        <div class="mt-1">
+                            <select id="category_id" name="category_id" required
+                                    class="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
                         <label for="body" class="block text-sm font-medium text-gray-700">Content</label>
                         <div class="mt-1">
                             <textarea id="body" name="body" rows="10" required 

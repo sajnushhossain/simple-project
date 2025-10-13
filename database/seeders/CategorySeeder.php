@@ -13,16 +13,12 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::firstOrCreate(['slug' => 'latest'], ['name' => 'সর্বশেষ']);
-        Category::firstOrCreate(['slug' => 'bangladesh'], ['name' => 'বাংলাদেশ']);
-        Category::firstOrCreate(['slug' => 'politics'], ['name' => 'রাজনীতি']);
-        Category::firstOrCreate(['slug' => 'world'], ['name' => 'বিশ্ব']);
-        Category::firstOrCreate(['slug' => 'business'], ['name' => 'বাণিজ্য']);
-        Category::firstOrCreate(['slug' => 'opinion'], ['name' => 'মতামত']);
-        Category::firstOrCreate(['slug' => 'sports'], ['name' => 'খেলা']);
-        Category::firstOrCreate(['slug' => 'entertainment'], ['name' => 'বিনোদন']);
-        Category::firstOrCreate(['slug' => 'jobs'], ['name' => 'চাকরি']);
-        Category::firstOrCreate(['slug' => 'lifestyle'], ['name' => 'জীবনধারা']);
-        Category::firstOrCreate(['slug' => 'video'], ['name' => 'ভিডিও']);
+        Category::truncate();
+        Category::firstOrCreate(['slug' => 'tech'], ['name' => 'Tech']);
+        Category::firstOrCreate(['slug' => 'sports'], ['name' => 'Sports']);
+        Category::firstOrCreate(['slug' => 'sports-2'], ['name' => 'Sports']);
+        Category::firstOrCreate(['slug' => 'economy'], ['name' => 'Economy']);
+        Category::firstOrCreate(['slug' => 'entertainment'], ['name' => 'Entertainment']);
+        Category::firstOrCreate(['slug' => 'jobs'], ['name' => 'Jobs']);
     }
 }
