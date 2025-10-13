@@ -28,10 +28,12 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <!-- Brand Section -->
-                <div class="md:col-span-1">
-                    <a href="/" class="text-2xl font-bold text-black hover:text-primary transition-colors duration-300 inline-flex items-center mb-4">
-                        <i class="fas fa-newspaper mr-2 text-black hover:text-primary transition-colors"></i>Simple News
+                <div class="md:col-span-1 ">
+                    <div class="text-black hover:text-primary">
+                        <a href="/" class="text-2xl font-bold  transition-colors duration-100 inline-flex items-center mb-4">
+                        <i class="fas fa-newspaper mr-2  transition-colors duration-100"></i>Simple News
                     </a>
+                    </div>
                     <p class="text-muted text-sm leading-relaxed">
                         Your trusted source for breaking news, in-depth analysis, and compelling stories from around the world.
                     </p>

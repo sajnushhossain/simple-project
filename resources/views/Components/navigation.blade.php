@@ -12,5 +12,5 @@
         </div>
     </div>
     <a href="/about" class="text-text hover:text-primary transition-colors duration-200 font-medium {{ request()->is('about') ? 'text-primary font-bold' : '' }}">About</a>
-    <a href="#" class="text-text hover:text-primary transition-colors duration-200 font-medium">Contact</a>
+    <a href="/contact" class="text-text hover:text-primary transition-colors duration-200 font-medium {{ request()->is('contact') ? 'text-primary font-bold' : '' }}">Contact</a>
 </nav>
