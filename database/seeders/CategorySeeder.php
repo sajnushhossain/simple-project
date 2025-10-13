@@ -16,7 +16,6 @@ class CategorySeeder extends Seeder
         Category::truncate();
         Category::firstOrCreate(['slug' => 'tech'], ['name' => 'Tech']);
         Category::firstOrCreate(['slug' => 'sports'], ['name' => 'Sports']);
-        Category::firstOrCreate(['slug' => 'sports-2'], ['name' => 'Sports']);
         Category::firstOrCreate(['slug' => 'economy'], ['name' => 'Economy']);
         Category::firstOrCreate(['slug' => 'entertainment'], ['name' => 'Entertainment']);
         Category::firstOrCreate(['slug' => 'jobs'], ['name' => 'Jobs']);
