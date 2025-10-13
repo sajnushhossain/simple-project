@@ -16,6 +16,16 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post', compact('post'));
+        $relatedPosts = Post::where('id', '!=', $post->id)->inRandomOrder()->take(5)->get();
+
+        return view('post', compact('post', 'relatedPosts'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $posts = Post::where('title', 'like', "%{$query}%")->orWhere('body', 'like', "%{$query}%")->paginate(9);
+
+        return view('search', compact('posts', 'query'));
     }
 }

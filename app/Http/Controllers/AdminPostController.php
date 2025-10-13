@@ -10,7 +10,7 @@ class AdminPostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         
         return view('admin.posts.index', [
             'posts' => $posts,
@@ -19,7 +19,8 @@ class AdminPostController extends Controller
 
     public function create()
     {
-        return view('admin.posts.create');
+        $posts = Post::all();
+        return view('admin.posts.create', compact('posts'));
     }
 
     public function store(Request $request)
@@ -44,7 +45,8 @@ class AdminPostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', ['post' => $post]);
+        $posts = Post::all();
+        return view('admin.posts.edit', ['post' => $post, 'posts' => $posts]);
     }
 
     public function update(Request $request, Post $post)

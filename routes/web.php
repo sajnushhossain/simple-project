@@ -14,6 +14,7 @@ Route::get('/', function () {
 
 Route::get('/blog', [PostController::class, 'index']);
 Route::get('/post/{post:slug}', [PostController::class, 'show']);
+Route::get('/search', [PostController::class, 'search']);
 
 Route::get('login', [LoginController::class, 'create'])->name('login');
 Route::post('login', [LoginController::class, 'store']);
