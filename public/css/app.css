@@ -15,6 +15,10 @@
   --radius: 12px;
 }
 
+/* Custom font for newspaper title */
+.newspaper-title { font-family: 'cursive'; }
+
+
 /* Reset and base */
 * { box-sizing: border-box; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }

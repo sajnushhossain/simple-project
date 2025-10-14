@@ -59,17 +59,14 @@
                             <!-- Share Buttons -->
                             <div class="flex items-center gap-3">
                                 <span class="text-muted font-semibold">Share:</span>
-                                <a href="#" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
-                                    <i class="fab fa-twitter"></i>
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}" target="_blank" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fab fa-x-twitter"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(url()->current()) }}&title={{ urlencode($post->title) }}&summary={{ urlencode(Str::limit(strip_tags($post->body), 150)) }}" target="_blank" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                                     <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
-                                    <i class="fas fa-link"></i>
                                 </a>
                             </div>
                         </div>
