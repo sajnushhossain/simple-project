@@ -9,10 +9,11 @@
                 <article class="bg-surface-2 rounded-xl overflow-hidden shadow-2xl">
                     <!-- Featured Image -->
                     <div class="relative">
-                        <img class="w-full h-[500px] object-cover" 
-                             src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/1200x600/1e293b/94a3b8?text=Article+Image' }}" 
-                             alt="{{ $post->title }}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-surface-2 via-transparent to-transparent"></div>
+                        <img class="w-full h-[500px] object-cover"
+                            src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/1200x600/1e293b/94a3b8?text=Article+Image' }}"
+                            alt="{{ $post->title }}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface-2 via-transparent to-transparent">
+                        </div>
                     </div>
 
                     <!-- Content -->
@@ -42,7 +43,8 @@
                             @if ($post->author)
                             <div class="flex items-center">
                                 <i class="far fa-user mr-2 text-primary"></i>
-                                <span>By <a href="#" class="text-primary hover:underline font-semibold">{{ $post->author->name }}</a></span>
+                                <span>By <a href="#"
+                                        class="text-primary hover:underline font-semibold">{{ $post->author->name }}</a></span>
                             </div>
                             @endif
                         </div>
@@ -53,22 +55,30 @@
                         </div>
 
                         <!-- Share & Back Button -->
-                        <div class="mt-12 pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4">
-                            <a href="/blog" class="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <div
+                            class="mt-12 pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4">
+                            <a href="/blog"
+                                class="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                                 <i class="fas fa-arrow-left mr-2"></i>
                                 Back to Blog
                             </a>
-                            
+
                             <!-- Share Buttons -->
                             <div class="flex items-center gap-3">
                                 <span class="text-muted font-semibold">Share:</span>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                                    target="_blank"
+                                    class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}" target="_blank" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}"
+                                    target="_blank"
+                                    class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                                     <i class="fab fa-x-twitter"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(url()->current()) }}&title={{ urlencode($post->title) }}&summary={{ urlencode(Str::limit(strip_tags($post->body), 150)) }}" target="_blank" class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(url()->current()) }}&title={{ urlencode($post->title) }}&summary={{ urlencode(Str::limit(strip_tags($post->body), 150)) }}"
+                                    target="_blank"
+                                    class="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                             </div>
@@ -86,35 +96,37 @@
                     </div>
                     <div class="space-y-6">
                         @forelse($relatedPosts as $related)
-                            <div class="group">
-                                <a href="/post/{{ $related->slug }}" class="flex gap-4">
-                                    <div class="flex-shrink-0 overflow-hidden rounded-lg">
-                                        <img src="{{ $related->image ? asset('storage/' . $related->image) : 'https://placehold.co/100x70/1e293b/94a3b8?text=+' }}" 
-                                             alt="{{ $related->title }}" 
-                                             class="w-28 h-20 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="group">
+                            <a href="/post/{{ $related->slug }}" class="flex gap-4">
+                                <div class="flex-shrink-0 overflow-hidden rounded-lg">
+                                    <img src="{{ $related->image ? asset('storage/' . $related->image) : 'https://placehold.co/100x70/1e293b/94a3b8?text=+' }}"
+                                        alt="{{ $related->title }}"
+                                        class="w-28 h-20 object-cover transition-transform duration-300 group-hover:scale-110">
+                                </div>
+                                <div class="flex-1">
+                                    <h4
+                                        class="text-base font-bold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-2 mb-2">
+                                        {{ Str::limit($related->title, 70) }}
+                                    </h4>
+                                    <div class="flex items-center text-xs text-muted">
+                                        <i class="far fa-clock mr-1"></i>
+                                        {{ $related->created_at->diffForHumans() }}
                                     </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-base font-bold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-2 mb-2">
-                                            {{ Str::limit($related->title, 70) }}
-                                        </h4>
-                                        <div class="flex items-center text-xs text-muted">
-                                            <i class="far fa-clock mr-1"></i>
-                                            {{ $related->created_at->diffForHumans() }}
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            @if(!$loop->last)
-                            <div class="border-b border-border"></div>
-                            @endif
+                                </div>
+                            </a>
+                        </div>
+                        @if(!$loop->last)
+                        <div class="border-b border-border"></div>
+                        @endif
                         @empty
-                            <p class="text-muted text-center py-4">No related stories available.</p>
+                        <p class="text-muted text-center py-4">No related stories available.</p>
                         @endforelse
                     </div>
-                    
+
                     <!-- View All Button -->
                     <div class="mt-6 pt-6 border-t border-border">
-                        <a href="/blog" class="block text-center px-4 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors duration-300">
+                        <a href="/blog"
+                            class="block text-center px-4 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors duration-300">
                             View All Articles
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>

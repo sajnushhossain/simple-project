@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/app.css')
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
+
 <body class="bg-bg text-text font-sans antialiased {{ request()->is('login') ? 'bg-white' : '' }}">
     @if(!request()->is('login'))
-        <x-header />
+    <x-header />
     @endif
 
     <main class="container mx-auto px-4 py-8">
@@ -29,12 +34,14 @@
                 <!-- Brand Section -->
                 <div class="md:col-span-1 ">
                     <div class="text-black hover:text-primary">
-                        <a href="/" class="text-2xl font-bold  transition-colors duration-100 inline-flex items-center mb-4">
-                        <i class="fas fa-newspaper mr-2  transition-colors duration-100"></i>Simple News
-                    </a>
+                        <a href="/"
+                            class="text-2xl font-bold  transition-colors duration-100 inline-flex items-center mb-4">
+                            <i class="fas fa-newspaper mr-2  transition-colors duration-100"></i>Simple News
+                        </a>
                     </div>
                     <p class="text-muted text-sm leading-relaxed">
-                        Your trusted source for breaking news, in-depth analysis, and compelling stories from around the world.
+                        Your trusted source for breaking news, in-depth analysis, and compelling stories from around the
+                        world.
                     </p>
                 </div>
 
@@ -42,23 +49,33 @@
                 <div>
                     <h3 class="text-black font-bold mb-4 text-lg">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="/" class="text-muted hover:text-primary transition-colors duration-200">Home</a></li>
-                        <li><a href="/blog" class="text-muted hover:text-primary transition-colors duration-200">Blog</a></li>
-                        <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">About Us</a></li>
-                        <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">Contact</a></li>
+                        <li><a href="/" class="text-muted hover:text-primary transition-colors duration-200">Home</a>
+                        </li>
+                        <li><a href="/blog"
+                                class="text-muted hover:text-primary transition-colors duration-200">Blog</a></li>
+                        <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">About
+                                Us</a></li>
+                        <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">Contact</a>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Categories -->
                 <div class="relative" x-data="{ open: false }">
                     <h3 class="text-black font-bold mb-4 text-lg">Categories</h3>
-                    <button @click="open = !open" class="text-muted hover:text-primary transition-colors duration-200 flex items-center justify-content gap-x-2 w-full">
+                    <button @click="open = !open"
+                        class="text-muted hover:text-primary transition-colors duration-200 flex items-center justify-content gap-x-2 w-full">
                         <span>Select Category</span>
-                        <i class="fas fa-chevron-down transform transition-transform duration-300" :class="{ 'rotate-180': open }"></i>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"
+                            :class="{ 'rotate-180': open }"></i>
                     </button>
-                    <ul x-show="open" @click.away="open = false" class="absolute bottom-full left-0 w-full bg-surface border border-border rounded-lg shadow-lg py-2 z-10 space-y-2" style="display: none;">
+                    <ul x-show="open" @click.away="open = false"
+                        class="absolute bottom-full left-0 w-full bg-surface border border-border rounded-lg shadow-lg py-2 z-10 space-y-2"
+                        style="display: none;">
                         @foreach($categories as $category)
-                            <li><a href="/blog?category={{ $category->slug }}" class="block px-4 py-2 text-muted hover:text-primary hover:bg-bg transition-colors duration-200">{{ $category->name }}</a></li>
+                        <li><a href="/blog?category={{ $category->slug }}"
+                                class="block px-4 py-2 text-muted hover:text-primary hover:bg-bg transition-colors duration-200">{{ $category->name }}</a>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
@@ -74,16 +91,20 @@
                         </button>
                     </form> -->
                     <div class="flex gap-3">
-                        <a href="#" class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -107,4 +128,5 @@
 
     @vite('resources/js/app.js')
 </body>
+
 </html>
