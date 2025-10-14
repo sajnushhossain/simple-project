@@ -16,11 +16,19 @@ class PostController extends Controller
         return view('home', compact('posts', 'categories'));
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-        $posts = Post::latest()->paginate(9);
+        $posts = Post::latest();
 
-        return view('blog', compact('posts'));
+        if ($request->has('category')) {
+            $category = Category::where('slug', $request->input('category'))->firstOrFail();
+            $posts->where('category_id', $category->id);
+        }
+
+        $posts = $posts->paginate(9);
+        $categories = Category::all();
+
+        return view('blog', compact('posts', 'categories'));
     }
 
     public function show(Post $post)
@@ -33,8 +41,18 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $posts = Post::where('title', 'like', "%{$query}%")->orWhere('body', 'like', "%{$query}%")->paginate(9);
+        $posts = Post::where('title', 'like', "%{$query}%")->orWhere('body', 'like', "%{$query}%");
 
-        return view('search', compact('posts', 'query'));
+        if ($request->has('category')) {
+            $category = Category::where('slug', $request->input('category'))->first();
+            if ($category) {
+                $posts->where('category_id', $category->id);
+            }
+        }
+
+        $posts = $posts->paginate(9);
+        $categories = Category::all();
+
+        return view('search', compact('posts', 'query', 'categories'));
     }
 }

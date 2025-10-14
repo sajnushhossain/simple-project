@@ -27,7 +27,7 @@
                             </div>
                         </a>
                         @if($post->category)
-                        <a href="/blog?category={{ $post->slug }}" class="text-xs font-semibold text-primary hover:underline uppercase tracking-wider">{{ $post->category->name }}</a>
+                        <a href="/blog?category={{ $post->category->slug }}" class="text-xs font-semibold text-primary hover:underline uppercase tracking-wider">{{ $post->category->name }}</a>
                         @endif
                         <h3 class="text-2xl font-bold text-text mt-2 mb-3">
                             <a href="/post/{{ $post->slug }}" class="hover:text-primary transition-colors duration-300">{{ $post->title }}</a>

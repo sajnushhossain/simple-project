@@ -14,6 +14,22 @@
             </p>
         </div>
 
+        <!-- Search Form -->
+        <div class="mb-12">
+            <form action="/search" method="GET" class="flex items-center justify-center">
+                <input type="text" name="query" value="{{ $query }}" placeholder="Search news..." class="w-full md:w-1/2 bg-white border-2 border-primary/30 rounded-l-lg px-4 py-3 text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+                <select name="category" class="bg-white border-y-2 border-primary/30 px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+                    <option value="">All Categories</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->slug }}" {{ request('category') == $category->slug ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="bg-primary text-white px-6 py-3 rounded-r-lg hover:bg-primary-700 transition-colors duration-300">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+
         @if($posts->count() === 0)
             <div class="text-center py-20">
                 <div class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-surface-2 mb-6">
@@ -34,10 +50,10 @@
                 @foreach ($posts as $post)
                     <div class="post-card group">
                         <a href="/post/{{ $post->slug }}" class="block">
-                            <div class="relative overflow-hidden">
+                            <div class="h-64 rounded-md overflow-hidden shadow-md">
                                 <img src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/750x300/1e293b/94a3b8?text=Article' }}" 
                                      alt="{{ $post->title }}" 
-                                     class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 @if($post->category)
                                 <div class="absolute top-4 left-4">
                                     <span class="bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">

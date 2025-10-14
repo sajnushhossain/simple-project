@@ -1,4 +1,7 @@
 <x-layout :posts="$relatedPosts">
+
+
+
     <div class="container mx-auto px-4 pt-10">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <!-- Main Post Content -->

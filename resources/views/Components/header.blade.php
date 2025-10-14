@@ -8,26 +8,17 @@
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-8 relative" id="desktop-menu-container">
-                <!-- <button id="desktop-menu-toggle" class="text-text hover:text-primary transition-colors duration-200 font-medium flex items-center">
-                    Menu <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-                </button> -->
-                <div id="desktop-menu" class="top-full right-0 mt-2 ml-20 shadow-lg rounded-lg p-4 z-50">
-                    <x-navigation />
-                </div>
+                <x-navigation />
             </div>
 
             <!-- Header Actions -->
             <div class="flex items-center space-x-4">
-                <!-- Search Icon & Form -->
-                <div class="relative">
-                    <button id="search-icon" class="text-text hover:text-primary transition-colors duration-200 text-lg" aria-label="Search">
+                <!-- Search Bar -->
+                <div class="hidden md:flex relative items-center">
+                    <input type="text" id="search-input" placeholder="Search..." class="w-0 bg-transparent border-b-2 border-primary focus:outline-none transition-all duration-300 ease-in-out">
+                    <button id="search-icon" class="text-text hover:text-primary transition-colors duration-200 text-lg ml-2" aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <form id="search-form" action="/search" method="GET" class="hidden absolute right-0 top-full mt-2 search-transition shadow-lg">
-                        <input type="text" name="query" placeholder="Search news..." 
-                               class="bg-white border-2 border-primary/30 rounded-lg px-4 py-2 text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-64" 
-                               required>
-                    </form>
                 </div>
 
                 <!-- Auth Links -->
@@ -68,6 +59,20 @@
             </button>
         </div>
         <div class="flex flex-col space-y-6">
+            <div class="relative">
+                <button id="mobile-search-icon" class="text-text hover:text-primary transition-colors duration-200 text-lg" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span class="ml-2">Search</span>
+                </button>
+                <form id="mobile-search-form" action="/search" method="GET" class="hidden mt-2">
+                    <div class="flex items-center bg-gray-100 rounded-lg p-2">
+                        <input type="text" name="query" placeholder="Search news..." class="w-full bg-transparent focus:outline-none text-lg px-2" required>
+                        <button type="submit" class="text-text hover:text-primary text-lg ml-2 bg-white rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
             <x-navigation />
             
             <!-- Mobile Auth Links -->
