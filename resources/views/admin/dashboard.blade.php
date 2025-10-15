@@ -15,10 +15,10 @@
             <h2 class="text-lg font-semibold text-gray-600 mb-2">Total Categories</h2>
             <p class="text-4xl font-bold text-gray-800">{{ $categoriesCount }}</p>
         </div>
-        <!-- <div class="bg-white shadow-lg rounded-lg p-6">
-            <h2 class="text-lg font-semibold text-gray-600 mb-2">Total Users</h2>
-            <p class="text-4xl font-bold text-gray-800">{{ $usersCount }}</p>
-        </div> -->
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-lg font-semibold text-gray-600 mb-2">Total Message</h2>
+            <p class="text-4xl font-bold text-gray-800">{{ $contactsCount }}</p>
+        </div>
     </div>
 </div>
 @endsection

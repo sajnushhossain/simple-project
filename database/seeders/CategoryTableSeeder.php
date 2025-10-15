@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,11 +14,9 @@ class CategoryTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            ['name' => 'Tech', 'slug' => 'tech'],
-            ['name' => 'Sports', 'slug' => 'sports'],
-            ['name' => 'Politics', 'slug' => 'politics'],
-            ['name' => 'Economy', 'slug' => 'economy'],
-        ]);
+        Category::firstOrCreate(['slug' => 'tech'], ['name' => 'Tech']);
+        Category::firstOrCreate(['slug' => 'sports'], ['name' => 'Sports']);
+        Category::firstOrCreate(['slug' => 'politics'], ['name' => 'Politics']);
+        Category::firstOrCreate(['slug' => 'economy'], ['name' => 'Economy']);
     }
 }
