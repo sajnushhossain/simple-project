@@ -61,20 +61,12 @@
                 </div>
 
                 <!-- Categories -->
-                <div class="relative" x-data="{ open: false }">
+                <div>
                     <h3 class="text-black font-bold mb-4 text-lg">Categories</h3>
-                    <button @click="open = !open"
-                        class="text-muted hover:text-primary transition-colors duration-200 flex items-center justify-content gap-x-2 w-full">
-                        <span>Select Category</span>
-                        <i class="fas fa-chevron-down transform transition-transform duration-300"
-                            :class="{ 'rotate-180': open }"></i>
-                    </button>
-                    <ul x-show="open" @click.away="open = false"
-                        class="absolute bottom-full left-0 w-full bg-surface border border-border rounded-lg shadow-lg py-2 z-10 space-y-2"
-                        style="display: none;">
-                        @foreach($categories as $category)
+                    <ul class="space-y-2">
+                        @foreach($categories->take(4) as $category)
                         <li><a href="/blog?category={{ $category->slug }}"
-                                class="block px-4 py-2 text-muted hover:text-primary hover:bg-bg transition-colors duration-200">{{ $category->name }}</a>
+                                class="text-muted hover:text-primary transition-colors duration-200">{{ $category->name }}</a>
                         </li>
                         @endforeach
                     </ul>

@@ -9,9 +9,15 @@ use Illuminate\Support\Str;
 
 class AdminPostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(10);
+        $posts = Post::latest();
+
+        if ($request->has('search')) {
+            $posts->where('title', 'like', '%' . $request->input('search') . '%');
+        }
+
+        $posts = $posts->paginate(10);
         
         return view('admin.posts.index', [
             'posts' => $posts,

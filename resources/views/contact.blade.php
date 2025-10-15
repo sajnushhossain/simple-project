@@ -7,7 +7,8 @@
                 feel free to reach out to us.
             </p>
 
-            <form action="#" method="POST" class="mt-8">
+            <form action="{{ route('contact.store') }}" method="POST" class="mt-8">
+                @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="name" class="block text-lg font-medium text-gray-700">Name</label>

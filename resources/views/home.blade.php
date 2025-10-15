@@ -44,7 +44,7 @@
             @foreach($subLeads as $post)
             <div class="mb-6 pb-6 border-b border-border">
                 <a href="/post/{{ $post->slug }}">
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-3">
+                    <div class="h-64 rounded-md overflow-hidden shadow-md mb-4">
                         <img class="w-full h-full object-cover"
                             src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/400x250/1e293b/94a3b8?text=Sub+Lead' }}"
                             alt="{{ $post->title }}">

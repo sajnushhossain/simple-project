@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/dist/outline/css/heroicons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-900 text-white shadow-lg">
+            <div class="p-5 bg-gray-800">
+                <h1 class="text-2xl font-bold text-white">Admin Panel</h1>
+            </div>
+            <nav class="mt-8">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-5 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-300">
+                    <i class="h-6 w-6 mr-3" data-feather="home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="{{ route('admin.posts.index') }}" class="flex items-center py-3 px-5 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-300">
+                    <i class="h-6 w-6 mr-3" data-feather="file-text"></i>
+                    <span>Posts</span>
+                </a>
+                <a href="{{ route('admin.categories.index') }}" class="flex items-center py-3 px-5 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-300">
+                    <i class="h-6 w-6 mr-3" data-feather="folder"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="{{ route('admin.contacts.index') }}" class="flex items-center py-3 px-5 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-300">
+                    <i class="h-6 w-6 mr-3" data-feather="users"></i>
+                    <span>Contacts</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top bar -->
+            <div class="bg-white shadow-md p-4 flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700">@yield('title', 'Dashboard')</h2>
+                </div>
+                <div>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="text-gray-600 hover:text-gray-800">
+                            <i class="h-6 w-6" data-feather="log-out"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                @yield('content')
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>
