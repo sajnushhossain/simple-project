@@ -27,4 +27,5 @@ class LoginTest extends TestCase
         $response->assertRedirect('/admin');
         $this->assertAuthenticatedAs($user);
     }
+    /** @test */ 
 }

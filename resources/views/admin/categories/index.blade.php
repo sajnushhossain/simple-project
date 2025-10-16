@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mx-auto px-4 pt-2">
     <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Manage Categories</h1>
+        <!-- <h1 class="text-3xl font-bold text-gray-800">Manage Categories</h1> -->
         <a href="{{ route('admin.categories.create') }}"
             class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
             <i class="h-5 w-5 mr-2" data-feather="plus"></i>
@@ -15,7 +15,7 @@
 
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="p-6">
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto ">
                 <table class="w-full table-auto">
                     <thead class="bg-gray-50">
                         <tr>
