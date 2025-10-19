@@ -13,18 +13,18 @@
                     <div>
                         <label for="name" class="block text-lg font-medium text-gray-700">Name</label>
                         <input type="text" name="name" id="name"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg">
+                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg">
                     </div>
                     <div>
                         <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
                         <input type="email" name="email" id="email"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg">
+                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg">
                     </div>
                 </div>
                 <div class="mt-6">
                     <label for="subject" class="block text-lg font-medium text-gray-700">Subject</label>
                     <input type="text" name="subject" id="subject"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg">
+                        class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg">
                 </div>
                 <div class="mt-6">
                     <label for="message" class="block text-lg font-medium text-gray-700">Message</label>

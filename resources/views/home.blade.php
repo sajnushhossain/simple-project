@@ -22,7 +22,7 @@
         @endphp
         <!-- header -->
         <div class="text-center mb-12 border-b-2 border-border pb-8">
-            <h1 class="text-6xl md:text-8xl font-black text-text tracking-tighter leading-none mb-2 newspaper-title">The
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-black text-text tracking-tighter leading-none mb-2 newspaper-title">The
                 Simple News</h1>
             <p class="text-muted text-lg max-w-3xl mx-auto">
                 Your Trusted Source for In-depth Reporting and Analysis
@@ -34,7 +34,7 @@
                     <img class="w-full h-auto object-cover rounded-lg shadow-lg mb-4"
                         src="{{ $lead->image ? asset('storage/' . $lead->image) : 'https://placehold.co/1200x600/1e293b/94a3b8?text=Lead+Story' }}"
                         alt="{{ $lead->title }}">
-                    <h1 class="text-4xl md:text-6xl font-bold text-text hover:text-primary transition duration-300">
+                    <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-text hover:text-primary transition duration-300">
                         {{ $lead->title }}</h1>
                     <p class="text-muted mt-4 text-xl">{{ Str::limit(strip_tags($lead->body), 300) }}</p>
                 </a>
@@ -44,7 +44,7 @@
             @foreach($subLeads as $post)
             <div class="mb-6 pb-6 border-b border-border">
                 <a href="/post/{{ $post->slug }}">
-                    <div class="h-64 rounded-md overflow-hidden shadow-md mb-4">
+                    <div class="h-48 sm:h-64 rounded-md overflow-hidden shadow-md mb-4">
                         <img class="w-full h-full object-cover"
                             src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/400x250/1e293b/94a3b8?text=Sub+Lead' }}"
                             alt="{{ $post->title }}">

@@ -18,6 +18,6 @@ class ContactFormController extends Controller
 
         Contact::create($validated);
 
-        return back()->with('success', 'Your message has been sent successfully!');
+        return redirect()->route('contact.form')->with('message', ['type' => 'success', 'text' => 'Your message has been sent successfully!']);
     }
 }

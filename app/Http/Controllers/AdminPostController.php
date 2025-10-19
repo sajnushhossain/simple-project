@@ -12,7 +12,8 @@ class AdminPostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::latest();
+        $sort = $request->get('sort', 'desc');
+        $posts = Post::orderBy('created_at', $sort);
 
         if ($request->has('search')) {
             $posts->where('title', 'like', '%' . $request->input('search') . '%');
@@ -22,6 +23,7 @@ class AdminPostController extends Controller
         
         return view('admin.posts.index', [
             'posts' => $posts,
+            'sort' => $sort,
         ]);
     }
 

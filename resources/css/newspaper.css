@@ -1,8 +1,20 @@
 
 .newspaper-layout {
-    column-count: 3;
+    column-count: 1; /* Default to 1 column */
     column-gap: 2rem;
-    column-rule: 1px solid #e5e7eb;
+}
+
+@media (min-width: 768px) { /* Medium screens */
+    .newspaper-layout {
+        column-count: 2;
+        column-rule: 1px solid #e5e7eb;
+    }
+}
+
+@media (min-width: 1024px) { /* Large screens */
+    .newspaper-layout {
+        column-count: 3;
+    }
 }
 
 .newspaper-layout .lead-story {

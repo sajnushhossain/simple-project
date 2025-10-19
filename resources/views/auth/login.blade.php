@@ -4,6 +4,7 @@
             <div class="text-center">
                 <a href="/" class="text-4xl font-bold text-primary">Simple News</a>
                 <p class="mt-2 text-muted">Welcome back! Please login to your account.</p>
+                <p class="mt-2 text-muted">(Only for admin)</p>
             </div>
             <form method="POST" action="{{ route('login') }}" class="space-y-6">
                 @csrf
@@ -33,9 +34,11 @@
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}
-                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                        <label for="remember" class="ml-2 block text-sm text-text">Remember Me</label>
+                        <label for="remember" class="flex items-center cursor-pointer">
+                            <input id="remember" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}
+                                class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                            <span class="ml-2 text-sm text-text">Remember Me</span>
+                        </label>
                     </div>
 
                     @if (Route::has('password.request'))

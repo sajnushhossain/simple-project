@@ -11,10 +11,26 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::latest()->paginate(10);
-        return view('admin.contacts.index', compact('contacts'));
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+        $search = $request->get('search');
+
+        $contacts = Contact::query();
+
+        if ($search) {
+            $contacts->where('name', 'like', '%' . $search . '%');
+        }
+
+        $contacts = $contacts->orderBy($sortBy, $sortOrder)->paginate(10);
+
+        return view('admin.contacts.index', [
+            'contacts' => $contacts,
+            'sortBy' => $sortBy,
+            'sortOrder' => $sortOrder,
+            'search' => $search,
+        ]);
     }
 
     /**

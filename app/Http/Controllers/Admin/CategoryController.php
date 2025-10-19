@@ -11,10 +11,27 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::latest()->paginate(10);
-        return view('admin.categories.index', compact('categories'));
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+        $search = $request->get('search');
+
+        $categories = Category::query();
+
+        if ($search) {
+            $categories->where('name', 'like', '%' . $search . '%')
+                       ->orWhere('slug', 'like', '%' . $search . '%');
+        }
+
+        $categories = $categories->orderBy($sortBy, $sortOrder)->paginate(10);
+
+        return view('admin.categories.index', [
+            'categories' => $categories,
+            'sortBy' => $sortBy,
+            'sortOrder' => $sortOrder,
+            'search' => $search,
+        ]);
     }
 
     /**
@@ -45,7 +62,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        // Not needed for this implementation
+        
     }
 
     /**
