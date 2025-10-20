@@ -15,13 +15,15 @@
             <div class="flex items-center space-x-4">
                 <!-- Search Bar -->
                 <div class="hidden md:flex relative items-center">
-                    <input type="text" id="search-input" placeholder="Search..."
-                        class="w-0 bg-transparent border-b-2 border-primary focus:outline-none transition-all duration-300 ease-in-out">
-                    <button id="search-icon"
-                        class="text-text hover:text-primary transition-colors duration-200 text-lg ml-2"
-                        aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    <form id="desktop-search-form" action="/search" method="GET" class="relative items-center">
+                        <input type-="text" id="search-input" name="query" placeholder="Search..."
+                            class="w-0 bg-transparent border-b-2 border-primary focus:outline-none transition-all duration-300 ease-in-out">
+                        <button id="search-icon" type="submit"
+                            class="text-text hover:text-primary transition-colors duration-200 text-lg ml-2"
+                            aria-label="Search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Auth Links -->

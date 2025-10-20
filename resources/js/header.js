@@ -30,12 +30,27 @@ if (mobileNav) {
 // Search Toggle
 const searchIcon = document.getElementById('search-icon');
 const searchInput = document.getElementById('search-input');
+const desktopSearchForm = document.getElementById('desktop-search-form');
 
 if (searchIcon && searchInput) {
     searchIcon.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
-        searchInput.classList.toggle('w-64');
-        searchInput.focus();
+
+        if (searchInput.classList.contains('w-64')) {
+            if (searchInput.value.trim() !== '') {
+                desktopSearchForm.submit();
+            }
+        } else {
+            searchInput.classList.toggle('w-64');
+            searchInput.focus();
+        }
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            desktopSearchForm.submit();
+        }
     });
 
     document.addEventListener('click', function(e) {

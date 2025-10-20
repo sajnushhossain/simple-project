@@ -94,7 +94,7 @@
                 </table>
             </div>
             <div class="mt-8">
-                {{ $contacts->appends(request()->only('sort_by', 'sort_order'))->links('vendor.pagination.tailwind') }}
+                {{ $contacts->appends(request()->only('sort_by', 'sort_order'))->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>

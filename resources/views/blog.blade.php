@@ -53,8 +53,8 @@
         @endif
 
         <!-- Pagination -->
-        <div class="mt-20">
-            {{ $posts->links() }}
+        <div class="mt-8">
+            {{ $posts->links('vendor.pagination.custom') }}
         </div>
     </div>
 </x-layout>

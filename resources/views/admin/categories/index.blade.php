@@ -84,7 +84,7 @@
                 </table>
             </div>
             <div class="mt-8">
-                {{ $categories->appends(request()->only('sort_by', 'sort_order', 'search'))->links('vendor.pagination.tailwind') }}
+                {{ $categories->appends(request()->only('sort_by', 'sort_order', 'search'))->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>

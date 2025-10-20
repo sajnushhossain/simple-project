@@ -99,7 +99,7 @@
                         <div class="group">
                             <a href="/post/{{ $related->slug }}" class="flex gap-4">
                                 <div class="flex-shrink-0 overflow-hidden rounded-lg">
-                                    <img src="{{ $related->image ? asset('storage/' . $related->image) : 'https://placehold.co/100x70/1e293b/94a3b8?text=+' }}"
+                                    <img src="{{ $related->image ? asset('storage/' . $related->image) : 'https://placehold.co/100x70/1e293b/94a3b8?text=Post' }}"
                                         alt="{{ $related->title }}"
                                         class="w-28 h-20 object-cover transition-transform duration-300 group-hover:scale-110">
                                 </div>

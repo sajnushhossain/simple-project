@@ -45,13 +45,9 @@
 
                 <div>
                     <label for="image" class="block text-sm font-medium text-gray-700">Featured Image</label>
-                    <div class="mt-2 flex items-center space-x-4">
-                        <input class="w-full px-3 py-2 border-2 rounded-lg bg-gray-100 border-gray-200 text-gray-900"
-                            type="file" id="image" name="image">
-                        @if ($post->image)
-                        <img src="{{ asset('storage/' . $post->image) }}" alt="Current Image"
-                            class="w-24 h-24 object-cover rounded-lg">
-                        @endif
+                    <div class="mt-1">
+                        <x-dnd-file-upload name="image"
+                            existingImage="{{ $post->image ? asset('storage/' . $post->image) : '' }}" />
                     </div>
                 </div>
 

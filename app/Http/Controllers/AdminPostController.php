@@ -6,7 +6,9 @@ use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPostController extends Controller
 {
@@ -35,23 +37,32 @@ class AdminPostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $attributes = $request->validated();
-        if (array_key_exists('image', $attributes)) {
-            $attributes['image'] = $request->file('image')->store('images', 'public');
+        Log::info('Post creation request received', $request->all());
+        try {
+            $attributes = $request->validated();
+            if ($request->hasFile('image')) {
+                $attributes['image'] = $request->file('image')->store('images', 'public');
+            }
+            $slug = Str::slug($attributes['title']);
+            $count = Post::where('slug', 'LIKE', "{$slug}%")->count();
+            if ($count > 0) {
+                $attributes['slug'] = "{$slug}-{$count}";
+            } else {
+                $attributes['slug'] = $slug;
+            }
+
+            $attributes['user_id'] = auth()->id();
+
+            Post::create($attributes);
+
+            return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('Post creation validation failed', ['errors' => $e->errors()]);
+            throw $e;
+        } catch (\Exception $e) {
+            Log::error('Error creating post', ['message' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error creating post: ' . $e->getMessage());
         }
-        $slug = Str::slug($attributes['title']);
-        $count = Post::where('slug', 'LIKE', "{$slug}%")->count();
-        if ($count > 0) {
-            $attributes['slug'] = "{$slug}-{$count}";
-        } else {
-            $attributes['slug'] = $slug;
-        }
-
-        $attributes['user_id'] = auth()->id();
-
-        Post::create($attributes);
-
-        return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
     }
 
     public function edit(Post $post)
@@ -63,11 +74,20 @@ class AdminPostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $attributes = $request->validated();
-        if (array_key_exists('image', $attributes)) {
+
+        if ($request->boolean('remove_image')) {
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $attributes['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
             $attributes['image'] = $request->file('image')->store('images', 'public');
         }
 
-        if ($attributes['title'] !== $post->title) {
+        if (isset($attributes['title']) && $attributes['title'] !== $post->title) {
             $slug = Str::slug($attributes['title']);
             $count = Post::where('slug', 'LIKE', "{$slug}%")->count();
             if ($count > 0) {
@@ -88,4 +108,6 @@ class AdminPostController extends Controller
 
         return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully!');
     }
+
+    
 }

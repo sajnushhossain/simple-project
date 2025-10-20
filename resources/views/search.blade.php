@@ -94,7 +94,7 @@
 
         <!-- Pagination -->
         <div class="mt-12">
-            {{ $posts->appends(['query' => $query])->links('vendor.pagination.tailwind') }}
+            {{ $posts->appends(['query' => $query])->links('vendor.pagination.custom') }}
         </div>
         @endif
     </div>
