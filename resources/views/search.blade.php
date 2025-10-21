@@ -1,101 +1,102 @@
-<x-layout :posts="$posts">
+<x-layout>
     <div class="container mx-auto px-4 pt-10">
-        <!-- Search Header -->
-        <div class="text-center mb-12">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4">
-                <i class="fas fa-search text-primary text-3xl"></i>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Search Results
-            </h1>
-            <p class="text-xl text-muted">
-                Found <span class="text-primary font-bold">{{ $posts->total() }}</span>
-                result{{ $posts->total() !== 1 ? 's' : '' }} for
-                <span class="text-gray-900 font-semibold">"{{ $query }}"</span>
-            </p>
-        </div>
+        
 
-        <!-- Search Form -->
-        <div class="mb-12">
-            <form action="/search" method="GET" class="flex items-center justify-center">
-                <input type="text" name="query" value="{{ $query }}" placeholder="Search news..."
-                    class="w-full md:w-1/2 bg-white border-2 border-primary/30 rounded-l-lg px-4 py-3 text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-                <select name="category"
-                    class="bg-white border-y-2 border-primary/30 px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-                    <option value="">All Categories</option>
-                    @foreach($categories as $category)
-                    <option value="{{ $category->slug }}"
-                        {{ request('category') == $category->slug ? 'selected' : '' }}>{{ $category->name }}</option>
-                    @endforeach
-                </select>
-                <button type="submit"
-                    class="bg-primary text-white px-6 py-3 rounded-r-lg hover:bg-primary-700 transition-colors duration-300">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
+        
 
-        @if($posts->count() === 0)
-        <div class="text-center py-20">
-            <div class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-surface-2 mb-6">
-                <i class="fas fa-search text-muted text-6xl"></i>
-            </div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">No Results Found</h2>
-            <p class="text-muted text-lg mb-8 max-w-md mx-auto">
-                We couldn't find any articles matching "{{ $query }}". Try different keywords or browse our latest
-                articles.
-            </p>
-            <a href="/blog" class="btn-primary inline-flex items-center">
-                <i class="fas fa-newspaper mr-2"></i>
-                Browse All Articles
-            </a>
-        </div>
-        @else
-        <!-- Search Results Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            @foreach ($posts as $post)
-            <div class="post-card group">
-                <a href="/post/{{ $post->slug }}" class="block">
-                    <div class="h-64 rounded-md overflow-hidden shadow-md">
-                        <img src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/750x300/1e293b/94a3b8?text=Article' }}"
-                            alt="{{ $post->title }}"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        @if($post->category)
-                        <div class="absolute top-4 left-4">
-                            <span
-                                class="bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
-                                {{ $post->category->name }}
-                            </span>
-                        </div>
-                        @endif
+        @if(isset($posts))
+            @if($posts->count() === 0)
+                <div class="text-center py-16">
+                    <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary-lightest mb-6">
+                        <i class="fas fa-sad-tear text-primary text-5xl"></i>
                     </div>
-                </a>
-                <div class="p-5">
-                    <a href="/post/{{ $post->slug }}"
-                        class="text-xl font-bold text-gray-900 hover:text-primary transition-colors duration-300 block mb-3">
-                        {{ $post->title }}
-                    </a>
-                    <p class="text-muted text-sm leading-relaxed mb-4">
-                        {{ Str::limit(strip_tags($post->body), 130) }}
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">No Articles Found</h2>
+                    <p class="text-muted text-lg mb-8 max-w-md mx-auto">
+                        It seems we can't find any articles based on your search. Please try again with different keywords.
                     </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-muted text-sm">
-                            <i class="far fa-clock mr-1"></i>{{ $post->created_at->diffForHumans() }}
-                        </span>
-                        <span class="text-primary font-semibold group-hover:underline inline-flex items-center">
-                            Read More
-                            <i class="fas fa-arrow-right ml-1 group-hover:ml-2 transition-all duration-300"></i>
-                        </span>
-                    </div>
+                    <a href="/blog" class="btn-primary inline-flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Explore Our Blog
+                    </a>
                 </div>
-            </div>
-            @endforeach
-        </div>
+            @else
+                <div class="mb-8">
+                    <p class="text-lg text-muted">
+                        Showing <span class="font-bold text-primary">{{ $posts->firstItem() }}-{{ $posts->lastItem() }}</span> of <span class="font-bold text-primary">{{ $posts->total() }}</span> results.
+                    </p>
+                </div>
+                <!-- Search Results List -->
+                <div class="space-y-8 mb-12">
+                    @foreach ($posts as $post)
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <div class="md:flex">
+                            <div class="md:w-1/3">
+                                <a href="/post/{{ $post->slug }}" class="block h-full">
+                                    <img src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/750x500/1e293b/94a3b8?text=Article' }}"
+                                        alt="{{ $post->title }}"
+                                        class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                            <div class="p-6 md:w-2/3">
+                                @if($post->category)
+                                <a href="/blog?category={{ $post->category->slug }}" class="text-primary font-semibold text-sm hover:underline">{{ $post->category->name }}</a>
+                                @endif
+                                <a href="/post/{{ $post->slug }}"
+                                    class="block text-2xl font-bold text-gray-900 hover:text-primary transition-colors duration-300 mt-2 mb-3">
+                                    {{ $post->title }}
+                                </a>
+                                <p class="text-muted text-base leading-relaxed mb-4">
+                                    {{ Str::limit(strip_tags($post->body), 200) }}
+                                </p>
+                                <div class="flex items-center text-sm text-muted">
+                                    <span class="flex items-center">
+                                        <i class="far fa-user-circle mr-2"></i> {{ $post->author->name ?? 'Anonymous' }}
+                                    </span>
+                                    <span class="mx-3">|</span>
+                                    <span class="flex items-center">
+                                        <i class="far fa-clock mr-2"></i>{{ $post->created_at->format('F j, Y') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
 
-        <!-- Pagination -->
-        <div class="mt-12">
-            {{ $posts->appends(['query' => $query])->links('vendor.pagination.custom') }}
-        </div>
+                <!-- Pagination -->
+                <div class="mt-12">
+                    {{ $posts->appends(request()->query())->links('vendor.pagination.custom') }}
+                </div>
+            @endif
         @endif
     </div>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr(".datepicker", {
+                dateFormat: "Y-m-d",
+                onChange: function() {
+                    document.getElementById('search-form').submit();
+                }
+            });
+
+            const searchForm = document.getElementById('search-form');
+            const queryInput = document.getElementById('query');
+            const categorySelect = document.getElementById('category');
+
+            let debounceTimer;
+            queryInput.addEventListener('input', function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    searchForm.submit();
+                }, 500); // Adjust the delay as needed (in milliseconds)
+            });
+
+            categorySelect.addEventListener('change', function() {
+                searchForm.submit();
+            });
+        });
+    </script>
+    @endpush
 </x-layout>

@@ -1,4 +1,4 @@
-<x-layout :posts="$relatedPosts">
+<x-layout>
 
 
 

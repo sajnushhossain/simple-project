@@ -11,7 +11,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->take(10)->get();
-        $categories = Category::all();
+        $categories = Category::with(['posts' => function ($query) {
+            $query->latest('updated_at')->take(3);
+        }])->get();
 
         return view('home', compact('posts', 'categories'));
     }
@@ -41,13 +43,21 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $posts = Post::where('title', 'like', "%{$query}%")->orWhere('body', 'like', "%{$query}%");
+        $posts = Post::query();
 
-        if ($request->has('category')) {
+        if ($query) {
+            $posts->where('title', 'like', "%{$query}%");
+        }
+
+        if ($request->filled('category')) {
             $category = Category::where('slug', $request->input('category'))->first();
             if ($category) {
                 $posts->where('category_id', $category->id);
             }
+        }
+
+        if ($request->filled('date')) {
+            $posts->whereDate('created_at', $request->input('date'));
         }
 
         $posts = $posts->paginate(9);

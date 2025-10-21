@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::component('header', Header::class);
         View::composer('components.navigation', NavigationComposer::class);
-        View::composer('components.header', HeaderComposer::class);
+        View::composer('components.header', CategoryComposer::class);
         View::composer('components.layout', CategoryComposer::class);
     }
 }

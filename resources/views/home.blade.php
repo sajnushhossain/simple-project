@@ -1,4 +1,4 @@
-<x-layout :posts="$posts">
+<x-layout>
     @push('head')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -7,7 +7,7 @@
         rel="stylesheet">
     @endpush
 
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4">
         @if($posts->isEmpty())
         <div class="text-center py-20">
             <h2 class="text-3xl font-bold mb-4 text-gray-900">No Posts Yet</h2>
@@ -20,6 +20,9 @@
         $topStories = $posts->splice(0, 6);
         $moreNews = $posts->splice(0, 4);
         @endphp
+
+
+
         <!-- header -->
         <div class="text-center mb-12 border-b-2 border-border pb-8">
             <h1 class="text-5xl sm:text-6xl md:text-8xl font-black text-text tracking-tighter leading-none mb-2 newspaper-title">The
@@ -28,6 +31,7 @@
                 Your Trusted Source for In-depth Reporting and Analysis
             </p>
         </div>
+
         <div class="newspaper-layout">
             <div class="lead-story mb-8">
                 <a href="/post/{{ $lead->slug }}" class="block mb-8">
@@ -89,13 +93,15 @@
             </div>
         </section>
 
+
+
         {{-- Categorized News --}}
         @foreach($categories as $category)
         @if($category->posts->isNotEmpty())
         <section class="my-12 pt-8 border-t border-border">
             <h2 class="section-title">{{ $category->name }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($category->posts->take(4) as $post)
+                @foreach($category->posts as $post)
                 <div
                     class="group bg-card p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-border">
                     <a href="/post/{{ $post->slug }}" class="block">

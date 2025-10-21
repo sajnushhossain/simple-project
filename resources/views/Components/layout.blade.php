@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
@@ -15,10 +15,12 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @stack('styles')
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 
-<body class="bg-bg text-text font-sans antialiased {{ request()->is('login') ? 'bg-white' : '' }}">
+<body class="bg-bg text-text font-sans antialiased {{ request()->is('login') ? 'bg-white' : '' }} overflow-x-hidden">
     @if(!request()->is('login'))
     <x-header />
     @endif
@@ -151,7 +153,7 @@
                 <!-- Categories -->
                 <div>
                     <h3 class="text-black font-bold mb-4 text-lg">Categories</h3>
-                    <ul class="space-y-2">
+                    <ul class="space-y-2 max-h-60 overflow-y-scroll hide-scrollbar">
                         @foreach($categories->take(4) as $category)
                         <li><a href="/blog?category={{ $category->slug }}"
                                 class="text-muted hover:text-primary transition-colors duration-200">{{ $category->name }}</a>
@@ -207,6 +209,7 @@
     @endif
 
     @vite('resources/js/app.js')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('scripts')
 </body>
 

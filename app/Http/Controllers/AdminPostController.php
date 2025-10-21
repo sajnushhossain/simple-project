@@ -15,13 +15,13 @@ class AdminPostController extends Controller
     public function index(Request $request)
     {
         $sort = $request->get('sort', 'desc');
-        $posts = Post::orderBy('created_at', $sort);
+        $query = Post::query();
 
         if ($request->has('search')) {
-            $posts->where('title', 'like', '%' . $request->input('search') . '%');
+            $query->where('title', 'like', '%' . $request->input('search') . '%');
         }
 
-        $posts = $posts->paginate(10);
+        $posts = $query->orderBy('created_at', $sort)->paginate(10);
         
         return view('admin.posts.index', [
             'posts' => $posts,

@@ -56,9 +56,34 @@
             </div>
         </div>
     </div>
-</header>
 
-<!-- Mobile Menu -->
+    <div class="py-2 border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="overflow-x-auto hide-scrollbar w-full">
+                <nav class="flex items-center flex-nowrap">
+
+                    @foreach($categories as $category)
+
+                    <a href="/blog?category={{ $category->slug }}" class="inline-block py-1 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-all duration-300
+
+                                          {{ request()->is('blog') && request()->query('category') == $category->slug ? 'bg-primary-100 text-primary font-semibold' : '' }}
+
+                                          border-r border-gray-300 last:border-r-0">
+
+                        {{ $category->name }}
+
+                    </a>
+
+                    @endforeach
+
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+</header><!-- Mobile Menu -->
 <div id="mobile-nav"
     class="hidden md:hidden fixed top-0 left-0 w-full h-screen bg-white z-50 mobile-menu-enter shadow-2xl">
     <div class="container mx-auto px-4 py-8">
