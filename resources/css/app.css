@@ -1,142 +1,71 @@
+
 @import "tailwindcss";
-@import "newspaper.css";
 
-@theme {
-  --color-bg: #ffffff;
-  --color-surface: #f8fafc;
-  --color-surface-2: #f1f5f9;
-  --color-card: #ffffff;
-  --color-text: #0f172a;
-  --color-muted: #64748b;
-  --color-light-text: #94a3b8;
-  --color-accent: #38bdf8;
-  --color-primary: #0ea5e9;
-  --color-primary-700: #0284c7;
-  --color-primary-900: #075985;
-  --color-danger: #ef4444;
-  
+@theme { /* Prothom Alo Theme Colors */
+  --color-bg: #ffffff;           /* Main background */
+  --color-surface: #f8f8f8;      /* Header/Footer/Subtle backgrounds */
+  --color-border: #e5e5e5;       /* Borders and dividers */
+  --color-text: #1a1a1a;         /* Body text */
+  --color-muted: #666666;        /* Secondary text (dates, authors) */
+  --color-primary: #0052a1;      /* Primary link and accent color (blue, if needed) */
+  --color-primary-hover: #003c75;/* Hover state for primary blue */
+  --color-danger: #d72924;       /* Used for specific highlights or errors */
+  --color-prothomalo-red: #E00000;
+  --color-prothomalo-dark-gray: #212121;
+  --color-prothomalo-muted: #4a4a4a;
+  --color-prothomalo-light-text: #666666;
+  --color-prothomalo-border: #e0e0e0;
+
   --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  
-  --border-radius: 12px;
-  
-  --shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
-  --shadow-lg: 0 20px 40px rgba(14, 165, 233, 0.15);
-  --shadow-2xl: 0 25px 50px rgba(14, 165, 233, 0.2);
-  
-  --animate-ticker: ticker 40s linear infinite;
-  
-  @keyframes ticker {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
-}
+  --font-family-serif: 'Cormorant', Georgia, serif;
 
-/* Custom Styles for Light Theme News Site */
+  --border-radius: 0px; /* Prothom Alo has sharp edges */
+
+  --shadow: none; /* Prothom Alo uses minimal shadows */
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+}
 
 @layer base {
   body {
     background-color: var(--color-bg);
     color: var(--color-text);
+    font-family: var(--font-family-sans);
   }
-  
+
   .border-border {
-    border-color: rgba(14, 165, 233, 0.2);
+    border-color: var(--color-prothomalo-border); /* Use specific border color */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-serif);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  } /* Prothom Alo uses Hind Siliguri or similar for Bengali, and Arial/sans-serif for English. Cormorant is a good serif choice. */
+
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 2em; }
+  h3 { font-size: 1.75em; }
+  h4 { font-size: 1.5em; } /* Prothom Alo uses smaller headings for sub-articles */
+  h5 { font-size: 1.25em; }
+  h6 { font-size: 1em; }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 1em;
   }
 }
-
 @layer components {
-  /* Card Hover Effects */
-  .card-hover {
-    @apply transition-all duration-300 ease-in-out;
+  .category-header { /* This is already defined, keeping it */
+    @apply flex items-center justify-between border-b-2 border-prothomalo-red pb-2 mb-4;
   }
-  
-  .card-hover:hover {
-    @apply transform -translate-y-1 shadow-lg;
-  }
-
-  /* Button Styles */
-  .btn-primary {
-    @apply bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-primary-700 transition-colors duration-300;
-  }
-
-  /* Mobile Menu Animation */
-  .mobile-menu-enter {
-    animation: slideDown 0.3s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Search Form Transition */
-  .search-transition {
-    @apply transition-all duration-300 ease-in-out;
-  }
-
-  /* Image Hover Zoom */
-  .img-zoom {
-    @apply transition-transform duration-500 ease-in-out;
-  }
-
-  .img-zoom-container:hover .img-zoom {
-    @apply scale-110;
-  }
-
-  /* Post Card Styles */
-  .post-card {
-    @apply bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
-  }
-
-  /* Typography */
-  .heading-primary {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight;
-  }
-
-  .heading-secondary {
-    @apply text-2xl md:text-3xl font-bold text-slate-800 mb-6;
-  }
-
-  /* Navigation Active State */
-  .nav-link {
-    @apply text-slate-600 hover:text-primary transition-colors duration-200 font-medium;
-  }
-
-  .nav-link.active {
-    @apply text-primary;
+  .search-input-transition {
+    @apply transform transition-transform duration-300 ease-in-out origin-left;
   }
 }
 
-@layer utilities {
-  /* Scrollbar Styling */
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-surface;
-  }
-
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-primary rounded-full;
-  }
-
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-700;
-  }
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
-}
+/* Utility classes for scrollbar hiding, already defined, keeping them */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }

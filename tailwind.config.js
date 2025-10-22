@@ -65,30 +65,27 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
+        serif: ['Cormorant', 'Georgia', 'serif'],
       },
       colors: {
-        bg: '#ffffff',
-        surface: '#f8fafc',
-        'surface-2': '#f1f5f9',
-        card: '#ffffff',
-        text: '#0f172a',
-        muted: '#64748b',
-        'light-text': '#94a3b8',
-        accent: '#38bdf8',
-        primary: {
-          DEFAULT: '#0ea5e9',
-          '700': '#0284c7',
-          '900': '#075985',
-        },
-        danger: '#ef4444',
-        border: 'rgba(14, 165, 233, 0.2)',
+        'primary-red': '#E00000',
+        'dark-text': '#333333',
+        'light-text': '#666666',
+        'page-background': '#F5F5F5',
+        'card-background': '#FFFFFF',
+        'border-light': '#E0E0E0',
+        // Keeping existing Prothom Alo specific colors if they are used elsewhere
+        'prothomalo-red': '#e00000',
+        'prothomalo-blue': '#007bff',
+        'prothomalo-gray': '#f1f1f1',
+        'prothomalo-dark-gray': '#333333',
       },
       borderRadius: {
-        DEFAULT: '12px',
+        DEFAULT: '0.25rem',
       },
       boxShadow: {
-        DEFAULT: '0 10px 30px rgba(2, 6, 23, 0.35)',
+        DEFAULT: '0 1px 2px rgba(0, 0, 0, 0.05)',
       },
       animation: {
         ticker: 'ticker 40s linear infinite',

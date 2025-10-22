@@ -1,11 +1,16 @@
-<nav class="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-8">
-    <a href="/"
-        class="text-text hover:text-primary transition-colors duration-200 font-medium px-3 py-1 rounded-md <?php echo e(request()->is('/') ? 'bg-primary-100 text-primary font-bold' : ''); ?>">Home</a>
-    <a href="/blog"
-        class="text-text hover:text-primary transition-colors duration-200 font-medium px-3 py-1 rounded-md <?php echo e(request()->is('blog') ? 'bg-primary-100 text-primary font-bold' : ''); ?>">Blog</a>
-
-    <a href="/about"
-        class="text-text hover:text-primary transition-colors duration-200 font-medium px-3 py-1 rounded-md <?php echo e(request()->is('about') ? 'bg-primary-100 text-primary font-bold' : ''); ?>">About</a>
-    <a href="/contact"
-        class="text-text hover:text-primary transition-colors duration-200 font-medium px-3 py-1 rounded-md <?php echo e(request()->is('contact') ? 'bg-primary-100 text-primary font-bold' : ''); ?>">Contact</a>
-</nav>
+<div class="overflow-x-auto hide-scrollbar">
+    <nav class="flex items-center space-x-6 whitespace-nowrap">
+        <a href="/"
+            class="text-prothomalo-dark-gray hover:text-prothomalo-red transition-colors duration-200 font-semibold text-base">Home</a>
+        <a href="/blog"
+            class="text-prothomalo-dark-gray hover:text-prothomalo-red transition-colors duration-200 font-semibold text-base">All News</a>
+        @foreach($categories as $category)
+            <a href="/blog?category={{ $category->slug }}"
+                class="text-prothomalo-dark-gray hover:text-prothomalo-red transition-colors duration-200 font-semibold text-base">{{ $category->name }}</a>
+        @endforeach
+        <a href="/about"
+            class="text-prothomalo-dark-gray hover:text-prothomalo-red transition-colors duration-200 font-semibold text-base">About</a>
+        <a href="/contact"
+            class="text-prothomalo-dark-gray hover:text-prothomalo-red transition-colors duration-200 font-semibold text-base">Contact</a>
+    </nav>
+</div>

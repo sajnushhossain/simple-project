@@ -5,70 +5,22 @@ const closeMobileNav = document.getElementById('close-mobile-nav');
 
 if (hamburgerMenu && mobileNav) {
     hamburgerMenu.addEventListener('click', function() {
-        mobileNav.classList.toggle('hidden');
-        document.body.style.overflow = mobileNav.classList.contains('hidden') ? 'auto' : 'hidden';
+        mobileNav.classList.remove('invisible', 'opacity-0');
+        mobileNav.classList.add('visible', 'opacity-100');
+        document.body.style.overflow = 'hidden';
     });
 }
 
 if (closeMobileNav && mobileNav) {
     closeMobileNav.addEventListener('click', function() {
-        mobileNav.classList.add('hidden');
+        mobileNav.classList.remove('visible', 'opacity-100');
+        mobileNav.classList.add('invisible', 'opacity-0');
         document.body.style.overflow = 'auto';
     });
 }
 
-// Close mobile menu when clicking outside
-if (mobileNav) {
-    mobileNav.addEventListener('click', function(e) {
-        if (e.target === mobileNav) {
-            mobileNav.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Search Toggle
-const searchIcon = document.getElementById('search-icon');
-const searchInput = document.getElementById('search-input');
-const desktopSearchForm = document.getElementById('desktop-search-form');
-
-if (searchIcon && searchInput) {
-    searchIcon.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (searchInput.classList.contains('w-64')) {
-            if (searchInput.value.trim() !== '') {
-                desktopSearchForm.submit();
-            }
-        } else {
-            searchInput.classList.toggle('w-64');
-            searchInput.focus();
-        }
-    });
-
-    searchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            desktopSearchForm.submit();
-        }
-    });
-
-    document.addEventListener('click', function(e) {
-        if (e.target !== searchInput && e.target !== searchIcon) {
-            searchInput.classList.remove('w-64');
-        }
-    });
-}
-
-// Mobile Search Toggle
-const mobileSearchIcon = document.getElementById('mobile-search-icon');
-const mobileSearchForm = document.getElementById('mobile-search-form');
-
-if (mobileSearchIcon && mobileSearchForm) {
-    mobileSearchIcon.addEventListener('click', function() {
-        mobileSearchForm.classList.toggle('hidden');
-    });
-}
+// Search Toggle (Removed - search bar is now always visible)
+// The previous search toggle logic is removed as the search bar is now always visible.
 
 // Desktop Menu Toggle
 const desktopMenuToggle = document.getElementById('desktop-menu-toggle');
@@ -88,43 +40,11 @@ if (desktopMenuToggle && desktopMenu) {
     });
 }
 
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle?.querySelector('i');
-
-function updateThemeIcon(isDark) {
-    if (themeIcon) {
-        if (isDark) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
-    }
-}
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        updateThemeIcon(isDark);
-    });
-}
-
-// Initialize theme on page load
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-
-if (shouldBeDark) {
-    document.documentElement.classList.add('dark');
-} else {
-    document.documentElement.classList.remove('dark');
-}
-updateThemeIcon(shouldBeDark);
+// Theme Toggle (Removed as Prothom Alo is light-themed only)
+// The previous theme toggle logic is removed as the request is to match Prothom Alo exactly, which does not have a theme toggle.
 
 // Smooth scroll for anchor links
+// Keep smooth scroll if it's a general site feature, not specific to header.
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');

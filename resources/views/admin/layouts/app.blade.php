@@ -12,7 +12,7 @@
         <!-- Sidebar -->
         <div class="w-64 bg-gray-900 text-white shadow-lg">
             <div class="p-5 bg-gray-800">
-                <h1 class="text-2xl font-bold text-white">Admin Panel</h1>
+                <h1 class="text-2xl font-bold text-white">Admin Panel<p class="text-sm text-gray-400">Simple News </p> </h1>
             </div>
             <nav class="mt-8">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-5 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-300 active:bg-gray-300 active:text-white">
@@ -44,7 +44,7 @@
                 <div>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit" class=" flex gap-2 text-gray-600 hover:text-gray-800">
+                        <button type="submit" class=" flex gap-2 text-gray-600 hover:text-gray-800 cursor-pointer items-center border border-gray-300 rounded-md px-4 py-2 hover:bg-gray-100 transition duration-300 ">
                             <span>logout</span>
                             <i class="h-6 w-6" data-feather="log-out"></i>
                         </button>

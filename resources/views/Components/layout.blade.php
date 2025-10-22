@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-x-hidden">
+<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -20,9 +21,10 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 
-<body class="bg-bg text-text font-sans antialiased {{ request()->is('login') ? 'bg-white' : '' }} overflow-x-hidden">
+<body class="bg-white text-prothomalo-dark-gray font-sans antialiased {{ request()->is('login') ? 'bg-white' : '' }}">
     @if(!request()->is('login'))
     <x-header />
+    <x-category-subheader />
     @endif
 
     @if(session()->has('message'))
@@ -113,96 +115,50 @@
         </script>
     @endif
 
-    <main class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-4 md:py-8 max-w-[1200px]">
         {{ $slot }}
-    </main>
+    </div>
 
     @if(!request()->is('login'))
-    <footer class="bg-surface mt-16 py-12 border-t border-border">
+    <footer class="bg-prothomalo-dark-gray text-white py-8 mt-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- Brand Section -->
-                <div class="md:col-span-1 ">
-                    <div class="text-black hover:text-primary">
-                        <a href="/"
-                            class="text-2xl font-bold  transition-colors duration-100 inline-flex items-center mb-4">
-                            <i class="fas fa-newspaper mr-2  transition-colors duration-100"></i>Simple News
-                        </a>
-                    </div>
-                    <p class="text-muted text-sm leading-relaxed">
-                        Your trusted source for breaking news, in-depth analysis, and compelling stories from around the
-                        world.
-                    </p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-full md:col-span-1">
+                    <a href="/">
+                        <img src="{{ asset('images/simple_news.png') }}" alt="Prothomalo" class="h-10 mb-4">
+                    </a>
+                    <p class="text-sm text-light-text">Simple News is the largest Bengali newspaper from Dhaka, Bangladesh. It is the most popular Bengali newspaper in the world.</p>
                 </div>
-
-                <!-- Quick Links -->
                 <div>
-                    <h3 class="text-black font-bold mb-4 text-lg">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/" class="text-muted hover:text-primary transition-colors duration-200">Home</a>
-                        </li>
-                        <li><a href="/blog"
-                                class="text-muted hover:text-primary transition-colors duration-200">Blog</a></li>
-                        <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">About
-                                Us</a></li>
-                        <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Categories -->
-                <div>
-                    <h3 class="text-black font-bold mb-4 text-lg">Categories</h3>
-                    <ul class="space-y-2 max-h-60 overflow-y-scroll hide-scrollbar">
-                        @foreach($categories->take(4) as $category)
-                        <li><a href="/blog?category={{ $category->slug }}"
-                                class="text-muted hover:text-primary transition-colors duration-200">{{ $category->name }}</a>
-                        </li>
+                    <h3 class="text-lg font-bold mb-4">Categories</h3>
+                    <ul class="space-y-2 text-prothomalo-light-text">
+                        @foreach($categories->take(5) as $category)
+                        <li><a href="/blog?category={{ $category->slug }}" class="hover:text-prothomalo-red">{{ $category->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
-
-                <!-- Newsletter -->
                 <div>
-                    <h3 class="text-black font-bold mb-4 text-lg">Stay Connected</h3>
-                    <p class="text-muted text-sm mb-4">Subscribe to our newsletter for the latest updates.</p>
-                    <!-- <form class="flex gap-2 mb-4">
-                        <input type="email" placeholder="Your email" class="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-300">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form> -->
-                    <div class="flex gap-3">
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-bg border border-border flex items-center justify-center text-muted hover:text-white hover:bg-primary hover:border-primary transition-all duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                    <h3 class="text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-2 text-prothomalo-light-text">
+                        <li><a href="#" class="hover:text-prothomalo-red">About Us</a></li>
+                        <li><a href="#" class="hover:text-prothomalo-red">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-prothomalo-red">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-prothomalo-red">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4 text-prothomalo-light-text">
+                        <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-
-            <!-- Bottom Bar -->
-            <div class="border-t border-border pt-6 mt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-muted text-sm">
-                    <p>&copy; {{ date('Y') }} Simple News. All rights reserved.</p>
-                    <div class="flex gap-6">
-                        <a href="#" class="hover:text-primary transition-colors duration-200">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors duration-200">Terms of Service</a>
-                        <a href="#" class="hover:text-primary transition-colors duration-200">Cookie Policy</a>
-                    </div>
-                </div>
+            <div class="mt-8 border-t border-prothomalo-border pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <p class="text-sm text-prothomalo-light-text">&copy; {{ date('Y') }} Simple News. All rights reserved.</p>
+                <p class="text-sm text-prothomalo-light-text">Developed by <a href="https://www.sajnush.info" class="text-prothomalo-red hover:underline">Sajnush</a></p>
             </div>
         </div>
     </footer>

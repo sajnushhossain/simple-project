@@ -16,7 +16,7 @@
                 <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}"
                     class="bg-gray-100 border-2 border-gray-200 rounded-lg px-4 py-2 w-64 focus:outline-none focus:border-blue-500">
                 <input type="hidden" name="sort" value="{{ request('sort') }}">
-                <button type="submit" class="bg-blue-600 text-white font-semibold rounded-lg px-4 py-2 ml-2">Search</button>
+                <!-- <button type="submit" class="bg-blue-600 text-white font-semibold rounded-lg px-4 py-2 ml-2">Search</button> -->
             </form>
 
             <div class="relative">
