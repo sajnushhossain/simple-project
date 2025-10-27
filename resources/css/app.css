@@ -1,5 +1,6 @@
 
 @import "tailwindcss";
+@import "./footer.css";
 
 @theme { /* Prothom Alo Theme Colors */
   --color-bg: #ffffff;           /* Main background */

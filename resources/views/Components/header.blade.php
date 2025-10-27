@@ -26,9 +26,6 @@
             <a href="/" class="flex-shrink-0">
                 <img src="{{ asset('images/simple_news.png') }}" alt="Simple News" class="h-20 md:h-24">
             </a>
-            <button id="hamburger-menu" class="lg:hidden text-prothomalo-dark-gray hover:text-prothomalo-red text-2xl">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
 
         <!-- Right side: Latest Posts & Search. -->
@@ -37,14 +34,24 @@
             @foreach($headerPosts as $post)
                 <a href="/post/{{ $post->slug }}" class="text-prothomalo-dark-gray hover:text-prothomalo-red font-semibold hidden lg:inline-block">{{ $post->title }}</a>
             @endforeach
-            <form id="desktop-search-form" action="/search" method="GET" class="flex items-center border border-prothomalo-border rounded-full px-2 py-1">
-                <input type="search" name="query" id="search-input"
-                       class="flex-grow bg-transparent focus:outline-none text-prothomalo-dark-gray"
-                       placeholder="Search...">
-                <button type="submit" class="text-prothomalo-dark-gray hover:text-prothomalo-red ml-2">
-                    <i class="fas fa-search"></i>
+            <div class="hidden lg:block">
+                <form id="desktop-search-form" action="/search" method="GET" class="flex items-center border border-prothomalo-border rounded-full px-2 py-1">
+                    <input type="search" name="query" id="search-input"
+                           class="flex-grow bg-transparent focus:outline-none text-prothomalo-dark-gray"
+                           placeholder="Search...">
+                    <button type="submit" class="text-prothomalo-dark-gray hover:text-prothomalo-red ml-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="lg:hidden flex items-center space-x-4">
+                <button id="mobile-search-icon" class="text-prothomalo-dark-gray hover:text-prothomalo-red text-2xl">
+                    <!-- <i class="fas fa-search"></i> -->
                 </button>
-            </form>
+                <button id="hamburger-menu" class="text-prothomalo-dark-gray hover:text-prothomalo-red text-2xl cursor-pointer">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -55,16 +62,16 @@
         <div class="flex flex-col h-full">
             <div class="p-4 border-b border-prothomalo-border flex justify-between items-center">
                 <a href="/" class="flex-shrink-0">
-                    <img src="https://assets.prothomalo.com/prothomalo/assets/palo-bangla-bb99f0c984c92a19d36834a3ef757045.svg" alt="Prothomalo" class="h-10">
+                    <img src="{{ asset('images/simple_news.png') }}" alt="Prothomalo" class="h-10">
                 </a>
-                <button id="close-mobile-nav" class="text-prothomalo-dark-gray hover:text-prothomalo-red text-2xl">
+                <button id="close-mobile-nav" class="text-prothomalo-dark-gray hover:text-prothomalo-red text-2xl cursor-pointer">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="flex-grow p-4 overflow-y-auto">
                 <form id="mobile-search-form" action="/search" method="GET" class="flex items-center border border-prothomalo-border rounded-full px-4 py-2 mb-6">
                     <input type="search" name="query" placeholder="Search..." class="flex-grow bg-transparent focus:outline-none text-prothomalo-dark-gray">
-                    <button type="submit" class="text-prothomalo-dark-gray hover:text-prothomalo-red ml-2">
+                    <button type="submit" class="text-prothomalo-dark-gray hover:text-prothomalo-red ml-2 cursor-pointer">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>

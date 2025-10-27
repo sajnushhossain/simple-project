@@ -1,6 +1,7 @@
 import './bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './header.js';
+import './footer.js';
 import Alpine from 'alpinejs';
 
 import Dropzone from 'dropzone';

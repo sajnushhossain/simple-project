@@ -120,16 +120,47 @@
     </div>
 
     @if(!request()->is('login'))
-    <footer class="bg-prothomalo-dark-gray text-white py-8 mt-8">
+    <footer class="bg-prothomalo-dark-gray text-white py-12 mt-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 text-center md:text-left mb-8 w-full md:justify-between">
                 <div class="col-span-full md:col-span-1">
-                    <a href="/">
-                        <img src="{{ asset('images/simple_news.png') }}" alt="Prothomalo" class="h-10 mb-4">
+                    <a href="/" class="inline-block">
+                        <img src="{{ asset('images/simple_news.png') }}" alt="Prothomalo" class="h-10 mb-4 mx-auto md:mx-0">
                     </a>
-                    <p class="text-sm text-light-text">Simple News is the largest Bengali newspaper from Dhaka, Bangladesh. It is the most popular Bengali newspaper in the world.</p>
+                    <p class="text-sm text-light-text mx-auto max-w-xs md:max-w-none md:mx-0">Simple News is the largest Bengali newspaper from Dhaka, Bangladesh. It is the most popular Bengali newspaper in the world.</p>
                 </div>
-                <div>
+                <div class="grid grid-cols-2 gap-8 md:hidden">
+                    <div class="text-center">
+                        <button class="footer-accordion-toggle w-full flex justify-center items-center text-lg font-bold mb-4">
+                            <span>Categories</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <!-- <h3 class="text-lg font-bold mb-4 hidden md:block">Categories</h3> -->
+                        <div class="footer-accordion-content">
+                            <ul class="space-y-2 text-prothomalo-light-text mx-auto w-fit">
+                                @foreach($categories->take(5) as $category)
+                                <li><a href="/blog?category={{ $category->slug }}" class="hover:text-prothomalo-red">{{ $category->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="footer-accordion-toggle w-full flex justify-center items-center text-lg font-bold mb-4">
+                            <span>Company</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <!-- <h3 class="text-lg font-bold mb-4 hidden md:block">Company</h3> -->
+                        <div class="footer-accordion-content">
+                            <ul class="space-y-2 text-prothomalo-light-text mx-auto w-fit">
+                                <li><a href="#" class="hover:text-prothomalo-red">About Us</a></li>
+                                <li><a href="#" class="hover:text-prothomalo-red">Contact Us</a></li>
+                                <li><a href="#" class="hover:text-prothomalo-red">Privacy Policy</a></li>
+                                <li><a href="#" class="hover:text-prothomalo-red">Terms of Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block text-center md:text-left">
                     <h3 class="text-lg font-bold mb-4">Categories</h3>
                     <ul class="space-y-2 text-prothomalo-light-text">
                         @foreach($categories->take(5) as $category)
@@ -137,7 +168,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div>
+                <div class="hidden md:block text-center md:text-left">
                     <h3 class="text-lg font-bold mb-4">Company</h3>
                     <ul class="space-y-2 text-prothomalo-light-text">
                         <li><a href="#" class="hover:text-prothomalo-red">About Us</a></li>
@@ -146,25 +177,36 @@
                         <li><a href="#" class="hover:text-prothomalo-red">Terms of Service</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="text-center md:text-left">
                     <h3 class="text-lg font-bold mb-4">Follow Us</h3>
-                    <div class="flex space-x-4 text-prothomalo-light-text">
+                    <div class="flex space-x-4 text-prothomalo-light-text justify-center md:justify-start mb-4">
                         <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="hover:text-prothomalo-red text-xl"><i class="fab fa-youtube"></i></a>
                     </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-bold mb-4">Subscribe to our Newsletter</h3>
+                        <form action="{{ route('subscribe.store') }}" method="POST" class="flex justify-center md:justify-start">
+                            @csrf
+                            <input type="email" name="email" placeholder="Your email" class="w-full max-w-xs px-3 py-2 rounded-l-md border focus:outline-none focus:text-white text-900">
+                            <button type="submit" class="bg-prothomalo-red text-white px-4 py-2 rounded-r-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="mt-8 border-t border-prothomalo-border pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mt-8 border-t border-prothomalo-border pt-8 flex flex-col md:flex-row justify-center md:justify-between items-center text-center">
                 <p class="text-sm text-prothomalo-light-text">&copy; {{ date('Y') }} Simple News. All rights reserved.</p>
-                <p class="text-sm text-prothomalo-light-text">Developed by <a href="https://www.sajnush.info" class="text-prothomalo-red hover:underline">Sajnush</a></p>
+                <p class="text-sm text-prothomalo-light-text md:ml-4">Developed by <a href="https://www.sajnush.info" class="text-prothomalo-red hover:underline">Sajnush</a></p>
             </div>
         </div>
     </footer>
     @endif
 
     @vite('resources/js/app.js')
+    @vite('resources/js/footer.js')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('scripts')
 </body>

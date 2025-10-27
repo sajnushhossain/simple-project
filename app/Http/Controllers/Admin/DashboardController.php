@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Contact;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,7 +17,8 @@ class DashboardController extends Controller
         $postsCount = Post::count();
         $categoriesCount = Category::count();
         $contactsCount = Contact::count();
+        $subscriptionsCount = Subscription::count();
 
-        return view('admin.dashboard', compact('postsCount', 'categoriesCount', 'contactsCount'));
+        return view('admin.dashboard', compact('postsCount', 'categoriesCount', 'contactsCount', 'subscriptionsCount'));
     }
 }
