@@ -1,4 +1,0 @@
-- [x] Add 'user_id' to fillable in Post model
-- [x] Fix form action in edit.blade.php to use named route
-- [x] Remove trailing space from password in UserFactory
-- [ ] Test the website by running it
