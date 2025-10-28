@@ -15,7 +15,7 @@ class SubscriptionController extends Controller
 
         Subscription::create($request->only('email'));
 
-        return back()->with('message', [
+        return redirect('/')->with('message', [
             'type' => 'success',
             'text' => 'Thank you for subscribing to our newsletter!'
         ]);
