@@ -26,9 +26,7 @@ class LoginController extends Controller
             return redirect()->intended('admin');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return back()->withErrors(['email' => __('auth.failed')]);
     }
 
     public function destroy(Request $request)

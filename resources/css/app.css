@@ -2,31 +2,35 @@
 @import "tailwindcss";
 @import "./footer.css";
 
-@theme { /* Prothom Alo Theme Colors */
-  --color-bg: #ffffff;           /* Main background */
-  --color-surface: #f8f8f8;      /* Header/Footer/Subtle backgrounds */
-  --color-border: #e5e5e5;       /* Borders and dividers */
-  --color-text: #1a1a1a;         /* Body text */
-  --color-muted: #666666;        /* Secondary text (dates, authors) */
-  --color-primary: #0052a1;      /* Primary link and accent color (blue, if needed) */
-  --color-primary-hover: #003c75;/* Hover state for primary blue */
-  --color-danger: #d72924;       /* Used for specific highlights or errors */
-  --color-prothomalo-red: #E00000;
-  --color-prothomalo-dark-gray: #212121;
-  --color-prothomalo-muted: #4a4a4a;
-  --color-prothomalo-light-text: #666666;
-  --color-prothomalo-border: #e0e0e0;
+/* We are moving the theme inside a layer to avoid it overriding everything. */
+@layer base {
+  .prothom-alo-theme {
+    --color-bg: #ffffff;           /* Main background */
+    --color-surface: #f8f8f8;      /* Header/Footer/Subtle backgrounds */
+    --color-border: #e5e5e5;       /* Borders and dividers */
+    --color-text: #1a1a1a;         /* Body text */
+    --color-muted: #666666;        /* Secondary text (dates, authors) */
+    --color-primary: #0052a1;      /* Primary link and accent color (blue, if needed) */
+    --color-primary-hover: #003c75;/* Hover state for primary blue */
+    --color-danger: #d72924;       /* Used for specific highlights or errors */
+    --color-prothomalo-red: #E00000;
+    --color-prothomalo-dark-gray: #212121;
+    --color-prothomalo-muted: #4a4a4a;
+    --color-prothomalo-light-text: #666666;
+    --color-prothomalo-border: #e0e0e0;
 
-  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-family-serif: 'Cormorant', Georgia, serif;
+    --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-family-serif: 'Cormorant', Georgia, serif;
 
-  --border-radius: 0px; /* Prothom Alo has sharp edges */
-
-  --shadow: none; /* Prothom Alo uses minimal shadows */
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-xl: none;
+    --border-radius: 0px; /* Prothom Alo has sharp edges */
+  }
 }
+
+/*
+  By removing the global @theme overrides for shadows, the admin panel's
+  hover effects will now work as intended. The public theme styles are
+  now scoped to `.prothom-alo-theme`.
+*/
 
 @layer base {
   body {
@@ -60,7 +64,7 @@
 }
 @layer components {
   .category-header { /* This is already defined, keeping it */
-    @apply flex items-center justify-between border-b-2 border-prothomalo-red pb-2 mb-4;
+    @apply flex items-center justify-between border-b-2 border-prothomalored pb-2 mb-4;
   }
   .search-input-transition {
     @apply transform transition-transform duration-300 ease-in-out origin-left;

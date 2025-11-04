@@ -15,14 +15,8 @@ class CategoryController extends Controller
     {
         $sortBy = $request->get('sort_by', 'created_at');
         $sortOrder = $request->get('sort_order', 'desc');
-        $search = $request->get('search');
 
         $categories = Category::query();
-
-        if ($search) {
-            $categories->where('name', 'like', '%' . $search . '%')
-                       ->orWhere('slug', 'like', '%' . $search . '%');
-        }
 
         $categories = $categories->orderBy($sortBy, $sortOrder)->paginate(10);
 
@@ -30,7 +24,6 @@ class CategoryController extends Controller
             'categories' => $categories,
             'sortBy' => $sortBy,
             'sortOrder' => $sortOrder,
-            'search' => $search,
         ]);
     }
 

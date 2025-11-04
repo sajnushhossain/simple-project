@@ -31,7 +31,7 @@
             </div>
             <div class="mt-8 flex justify-end">
                 <a href="{{ route('admin.contacts.index') }}"
-                    class="px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-300">Back to Contacts</a>
+                    class="w-full sm:w-auto px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 text-center hover:bg-gray-100 transition-colors duration-300">Back to Contacts</a>
             </div>
         </div>
     </div>

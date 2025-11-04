@@ -18,7 +18,30 @@ class DashboardController extends Controller
         $categoriesCount = Category::count();
         $contactsCount = Contact::count();
         $subscriptionsCount = Subscription::count();
+        $recentPosts = Post::latest()->take(5)->get();
+        $recentContacts = Contact::latest()->take(5)->get();
 
-        return view('admin.dashboard', compact('postsCount', 'categoriesCount', 'contactsCount', 'subscriptionsCount'));
+        $postsByDay = Post::where('created_at', '>=', now()->subDays(7))
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->get();
+
+        $lineChartData = [
+            'labels' => $postsByDay->pluck('date')->map(function ($date) {
+                return \Carbon\Carbon::parse($date)->format('M d');
+            }),
+            'data' => $postsByDay->pluck('count'),
+        ];
+
+        return view('admin.dashboard', [
+            'postsCount' => $postsCount,
+            'categoriesCount' => $categoriesCount,
+            'contactsCount' => $contactsCount,
+            'subscriptionsCount' => $subscriptionsCount,
+            'recentPosts' => $recentPosts,
+            'recentContacts' => $recentContacts,
+            'lineChartData' => $lineChartData,
+        ]);
     }
 }

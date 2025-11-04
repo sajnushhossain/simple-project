@@ -99,8 +99,8 @@
 
                     <!-- Compact List Below Grid -->
                     <div class="mt-4 space-y-4 border-t border-border-light pt-6">
-                        <h3 class="font-serif text-xl text-dark-text mb-4">Latest from the Grid</h3>
-                        @foreach($moreNews->take(4) as $post)
+                        <!-- <h3 class="font-serif text-xl text-dark-text mb-4">Latest from the Grid</h3> -->
+                        @foreach($moreNews->take(5) as $post)
                         <article class="border-b border-border-light pb-4 last:border-b-0">
                             <a href="/post/{{ $post->slug }}" class="block group">
                                 <h5

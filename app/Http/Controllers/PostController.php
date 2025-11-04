@@ -12,7 +12,7 @@ class PostController extends Controller
     {
         $posts = Post::latest()->take(10)->get();
         $categories = Category::with(['posts' => function ($query) {
-            $query->latest('updated_at')->take(3);
+            $query->latest('updated_at')->take(5);
         }])->get();
 
         return view('home', compact('posts', 'categories'));
@@ -35,7 +35,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $relatedPosts = Post::where('id', '!=', $post->id)->inRandomOrder()->take(5)->get();
+        $relatedPosts = Post::with('user')->where('id', '!=', $post->id)->inRandomOrder()->take(5)->get();
 
         return view('post', compact('post', 'relatedPosts'));
     }
@@ -43,21 +43,28 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $posts = Post::query();
+        $categorySlug = $request->input('category');
+        $date = $request->input('date');
+
+        $posts = Post::query()->with('user', 'category');
 
         if ($query) {
             $posts->where('title', 'like', "%{$query}%");
         }
 
-        if ($request->filled('category')) {
-            $category = Category::where('slug', $request->input('category'))->first();
-            if ($category) {
-                $posts->where('category_id', $category->id);
-            }
+        if ($categorySlug) {
+            $posts->whereHas('category', function ($q) use ($categorySlug) {
+                $q->where('slug', $categorySlug);
+            });
         }
 
-        if ($request->filled('date')) {
-            $posts->whereDate('created_at', $request->input('date'));
+        if ($date) {
+            try {
+                $parsedDate = \Carbon\Carbon::parse($date);
+                $posts->whereDate('created_at', $parsedDate->toDateString());
+            } catch (\Exception $e) {
+                // Not a valid date, so ignore
+            }
         }
 
         $posts = $posts->paginate(9);

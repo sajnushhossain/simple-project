@@ -4,15 +4,28 @@
 
 @section('content')
 <div class="container mx-auto px-4 pt-2">
-    <div class="flex justify-between items-center mb-8">
+    <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center mb-8 space-y-4 md:space-y-0">
         <h1 class="text-3xl font-bold text-gray-800">Subscriptions</h1>
-        <div class="flex items-center space-x-4">
-            <form action="{{ route('admin.subscriptions.index') }}" method="GET" class="flex items-center">
-                <input type="text" name="search" placeholder="Search by Email..." value="{{ request('search') }}"
-                    class="bg-gray-100 border-2 border-gray-200 rounded-lg px-4 py-2 w-64 focus:outline-none focus:border-blue-500">
-                <input type="hidden" name="sort_by" value="{{ request('sort_by', 'created_at') }}">
-                <input type="hidden" name="sort_order" value="{{ request('sort_order', 'desc') }}">
-            </form>
+        <div class="flex flex-col md:flex-row items-stretch md:items-center space-y-4 md:space-y-0 md:space-x-4">
+
+            <div class="relative w-full md:w-auto">
+                <button id="sortButton"
+                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-gray-100 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                    Sort By
+                    <i id="sortIcon" class="fa-solid fa-angle-down ml-2 transition-transform duration-300"></i>
+                </button>
+                <div id="sortDropdown"
+                     class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                    <a href="{{ route('admin.subscriptions.index', ['sort_by' => 'email', 'sort_order' => 'asc', 'search' => request('search')]) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Email (A-Z)</a>
+                    <a href="{{ route('admin.subscriptions.index', ['sort_by' => 'email', 'sort_order' => 'desc', 'search' => request('search')]) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Email (Z-A)</a>
+                    <a href="{{ route('admin.subscriptions.index', ['sort_by' => 'created_at', 'sort_order' => 'asc', 'search' => request('search')]) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Subscribed At (Oldest)</a>
+                    <a href="{{ route('admin.subscriptions.index', ['sort_by' => 'created_at', 'sort_order' => 'desc', 'search' => request('search')]) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Subscribed At (Newest)</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -22,14 +35,10 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">
-                            <a href="{{ route('admin.subscriptions.index', ['sort_by' => 'email', 'sort_order' => request('sort_by') === 'email' && request('sort_order') === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}">
                                 Email
-                            </a>
                         </th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">
-                            <a href="{{ route('admin.subscriptions.index', ['sort_by' => 'created_at', 'sort_order' => request('sort_by') === 'created_at' && request('sort_order') === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}">
                                 Subscribed At
-                            </a>
                         </th>
                         <th class="text-center py-3 px-4 font-semibold text-gray-600 uppercase">Actions</th>
                     </tr>
@@ -123,6 +132,24 @@
                 toast.classList.add('hidden');
             }, 3000);
         }
+
+        // Sort button functionality
+        document.getElementById('sortButton').addEventListener('click', function() {
+            document.getElementById('sortDropdown').classList.toggle('hidden');
+            document.getElementById('sortIcon').classList.toggle('rotate-180');
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('#sortButton') && !event.target.closest('#sortDropdown')) {
+                var dropdown = document.getElementById('sortDropdown');
+                var icon = document.getElementById('sortIcon');
+                if (!dropdown.classList.contains('hidden')) {
+                    dropdown.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            }
+        });
     });
 </script>
 @endpush

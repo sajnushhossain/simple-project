@@ -51,11 +51,11 @@
                     </div>
                 </div>
 
-                <div class="flex justify-end space-x-4">
+                <div class="flex flex-col-reverse sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 mt-6">
                     <a href="{{ route('admin.posts.index') }}"
-                        class="px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-300">Cancel</a>
+                        class="w-full sm:w-auto px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 text-center hover:bg-gray-100 transition-colors duration-300">Cancel</a>
                     <button type="submit"
-                        class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">Update
+                        class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">Update
                         Post</button>
                 </div>
             </form>

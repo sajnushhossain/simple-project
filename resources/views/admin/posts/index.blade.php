@@ -4,31 +4,27 @@
 
 @section('content')
 <div class="container mx-auto px-4 pt-2">
-    <div class="flex justify-between items-center mb-8">
+    <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center mb-8 space-y-4 md:space-y-0">
         <a href="{{ route('admin.posts.create') }}"
-            class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
-            <i class="h-5 w-5 mr-2" data-feather="plus"></i>
+           class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-base font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
+            <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
             Create New Post
         </a>
 
-        <div class="flex items-center space-x-4">
-            <form action="{{ route('admin.posts.index') }}" method="GET" class="flex items-center">
-                <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}"
-                    class="bg-gray-100 border-2 border-gray-200 rounded-lg px-4 py-2 w-64 focus:outline-none focus:border-blue-500">
-                <input type="hidden" name="sort" value="{{ request('sort') }}">
-                <!-- <button type="submit" class="bg-blue-600 text-white font-semibold rounded-lg px-4 py-2 ml-2">Search</button> -->
-            </form>
-
-            <div class="relative">
+        <div class="flex flex-col md:flex-row items-stretch md:items-center space-y-4 md:space-y-0 md:space-x-4">
+            <div class="relative w-full md:w-auto">
                 <button id="sortButton"
-                    class="inline-flex items-center px-6 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                    Sort By <i class="h-5 w-5 ml-2" data-feather="chevron-down"></i>
+                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-gray-100 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                    Sort By
+                    <i id="sortIcon" class="fa-solid fa-angle-down ml-2 transition-transform duration-300"></i>
                 </button>
                 <div id="sortDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
-                    <a href="{{ route('admin.posts.index', ['sort' => 'desc', 'search' => request('search')]) }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Newest First</a>
-                    <a href="{{ route('admin.posts.index', ['sort' => 'asc', 'search' => request('search')]) }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Oldest First</a>
+                    <a href="{{ route('admin.posts.index', ['sort' => 'desc']) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Newest First</a>
+                    <a href="{{ route('admin.posts.index', ['sort' => 'asc']) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Oldest First</a>
                 </div>
             </div>
         </div>
@@ -43,7 +39,7 @@
                             <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">Title</th>
                             <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">
                                 <a
-                                    href="{{ route('admin.posts.index', ['sort' => $sort === 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}">
+                                    href="{{ route('admin.posts.index', ['sort' => $sort === 'asc' ? 'desc' : 'asc']) }}">
                                     Created At
                                 </a>
                             </th>
@@ -79,7 +75,7 @@
                 </table>
             </div>
             <div class="mt-8">
-                {{ $posts->appends(request()->only('search', 'sort'))->links('vendor.pagination.custom') }}
+                {{ $posts->appends(request()->only('sort'))->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>
@@ -88,18 +84,21 @@
 
 @push('scripts')
 <script>
-document.getElementById('sortButton').addEventListener('click', function() {
-    document.getElementById('sortDropdown').classList.toggle('hidden');
-});
+    document.getElementById('sortButton').addEventListener('click', function() {
+        document.getElementById('sortDropdown').classList.toggle('hidden');
+        document.getElementById('sortIcon').classList.toggle('rotate-180');
+    });
 
-// Close the dropdown if the user clicks outside of it
-window.addEventListener('click', function(event) {
-    if (!event.target.matches('#sortButton') && !event.target.closest('#sortDropdown')) {
-        var dropdown = document.getElementById('sortDropdown');
-        if (!dropdown.classList.contains('hidden')) {
-            dropdown.classList.add('hidden');
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('#sortButton') && !event.target.closest('#sortDropdown')) {
+            var dropdown = document.getElementById('sortDropdown');
+            var icon = document.getElementById('sortIcon');
+            if (!dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
         }
-    }
-});
+    });
 </script>
 @endpush

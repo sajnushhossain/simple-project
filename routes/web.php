@@ -24,7 +24,7 @@ Route::middleware('web')->group(function () {
 
     Route::get('/blog', [PostController::class, 'blog']);
     Route::get('/post/{post:slug}', [PostController::class, 'show']);
-    Route::get('/search', [PostController::class, 'search']);
+    Route::get('/search', [PostController::class, 'search'])->name('search');
 
     Route::get('login', [LoginController::class, 'create'])->name('login');
     Route::post('login', [LoginController::class, 'store']);

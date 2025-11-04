@@ -26,11 +26,11 @@
                             <i class="far fa-clock mr-1"></i>
                             <span>{{ $post->created_at->diffForHumans() }}</span>
                         </div>
-                        @if ($post->author)
+                        @if ($post->user)
                         <div class="flex items-center">
                             <i class="far fa-user mr-1"></i>
                             <span>By <a href="#"
-                                    class="text-prothomalo-red hover:underline font-semibold">{{ $post->author->name }}</a></span>
+                                    class="text-prothomalo-red hover:underline font-semibold">{{ $post->user->name }}</a></span>
                         </div>
                         @endif
                     </div>

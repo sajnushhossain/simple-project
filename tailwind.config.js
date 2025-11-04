@@ -76,10 +76,11 @@ export default {
         'card-background': '#FFFFFF',
         'border-light': '#E0E0E0',
         // Keeping existing Prothom Alo specific colors if they are used elsewhere
-        'prothomalo-red': '#e00000',
+        'prothomalored': '#e00000',
         'prothomalo-blue': '#007bff',
         'prothomalo-gray': '#f1f1f1',
         'prothomalo-dark-gray': '#333333',
+        'sidebar-blue': '#2F8EBA',
       },
       borderRadius: {
         DEFAULT: '0.25rem',

@@ -1,8 +1,26 @@
 <x-layout>
     <div class="container mx-auto px-4 pt-10">
-        
-
-        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <form id="search-form" action="/search" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-2">
+                    <label for="query" class="sr-only">Search by title</label>
+                    <input type="text" id="query" name="query" value="{{ $query ?? '' }}" placeholder="Search by title..." class="form-input w-full">
+                </div>
+                <div>
+                    <label for="category" class="sr-only">Category</label>
+                    <select id="category" name="category" class="form-select w-full">
+                        <option value="">All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->slug }}" @if(request('category') === $category->slug) selected @endif>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="date" class="sr-only">Date</label>
+                    <input type="text" id="date" name="date" class="form-input w-full datepicker" placeholder="Select a date" value="{{ request('date') }}">
+                </div>
+            </form>
+        </div>
 
         @if(isset($posts))
             @if($posts->count() === 0)
@@ -50,7 +68,9 @@
                                 </p>
                                 <div class="flex items-center text-sm text-muted">
                                     <span class="flex items-center">
-                                        <i class="far fa-user-circle mr-2"></i> {{ $post->author->name ?? 'Anonymous' }}
+                                        @if($post->user)
+                                            <i class="far fa-user-circle mr-2"></i> {{ $post->user->name }}
+                                        @endif
                                     </span>
                                     <span class="mx-3">|</span>
                                     <span class="flex items-center">
