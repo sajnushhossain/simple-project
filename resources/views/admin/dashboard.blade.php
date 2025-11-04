@@ -52,9 +52,14 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2 bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Posts Created in Last 7 Days</h3>
-            <div class="h-80">
-                <canvas id="postsChart"></canvas>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Activity in Last 7 Days</h3>
+            <div>
+                <div class="w-full h-80">
+                    <canvas id="postsChart"></canvas>
+                </div>
+                <div class="w-full h-80 mt-8">
+                    <canvas id="pieChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -104,14 +109,7 @@
             type: 'line',
             data: {
                 labels: lineChartData.labels,
-                datasets: [{
-                    label: 'Posts',
-                    data: lineChartData.data,
-                    borderColor: '#4F46E5',
-                    backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }]
+                datasets: lineChartData.datasets
             },
             options: {
                 responsive: true,
@@ -126,7 +124,35 @@
                 },
                 plugins: {
                     legend: {
-                        display: false
+                        display: true
+                    }
+                }
+            }
+        });
+
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChartData = @json($pieChartData);
+
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: pieChartData.labels,
+                datasets: [{
+                    data: pieChartData.data,
+                    backgroundColor: [
+                        '#4F46E5',
+                        '#10B981',
+                        '#F59E0B',
+                        '#EF4444',
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
                     }
                 }
             }
