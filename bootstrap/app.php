@@ -1,5 +1,9 @@
 <?php
 
+if (! defined('PDO::MYSQL_ATTR_SSL_CA')) {
+    define('PDO::MYSQL_ATTR_SSL_CA', \Pdo\Mysql::ATTR_SSL_CA);
+}
+
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
