@@ -13,7 +13,7 @@ class ContactFormController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'subject' => 'nullable|string|max:255',
-            'message' => 'required|string',
+            'message' => 'nullable|string',
         ]);
 
         Contact::create($validated);

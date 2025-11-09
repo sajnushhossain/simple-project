@@ -10,13 +10,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\PageController;
 
 Route::middleware('web')->group(function () {
     Route::get('/about', [PageController::class, 'about']);
     Route::get('/contact', [PageController::class, 'contact'])->name('contact.form');
-    Route::post('/contact', [App\Http\Controllers\ContactFormController::class, 'store'])->name('contact.store');
+    Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
 
     Route::post('/subscribe', [SubscriptionController::class, 'store'])->name('subscribe.store');
 

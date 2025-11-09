@@ -61,7 +61,7 @@
                                 <form method="POST" action="{{ route('admin.categories.destroy', $category) }}"
                                     class="inline-block"
                                     ;>
-                                    <!-- onsubmit="return confirm('Are you sure you want to delete this category?') -->
+                                    <!-- onsubmit="return confirm('Are you sure you want to delete this category?');" -->
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"

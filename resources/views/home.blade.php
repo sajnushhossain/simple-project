@@ -11,8 +11,8 @@
         @else
         @php
         $featured = $posts->shift();
-        $rightGrid = $posts->splice(0, 4);
         $belowFeatured = $posts->splice(0, 2);
+        $rightGrid = $posts->splice(0, 8);
         $threeColumn = $posts->splice(0, 3);
         $moreNews = $posts->splice(0, 6);
         @endphp
@@ -31,7 +31,7 @@
                                 <img src="{{ $featured->image ? asset('storage/' . $featured->image) : 'https://images.unsplash.com/photo-1742805382149-3c2f0cd0f300?crop=entropy&cs=srgb&fm=jpg&q=85&w=900' }}"
                                     alt="{{ $featured->title }}"
                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                    width="900" height="506">
+                                    width="900" height="400">
                             </div>
                             <h1
                                 class="font-serif text-3xl md:text-4xl text-dark-text mb-2 group-hover:text-primary-red transition-colors leading-tight">
@@ -75,7 +75,7 @@
 
                 <!-- Right: 2x2 Thumbnail Grid -->
                 <div class="lg:col-span-1">
-                    <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="grid grid-cols-2 gap-4">
                         @foreach($rightGrid as $post)
                         <article class="bg-card-background p-3 rounded-lg shadow-sm">
                             <a href="/post/{{ $post->slug }}" class="block group">
@@ -98,7 +98,7 @@
                     </div>
 
                     <!-- Compact List Below Grid -->
-                    <div class="mt-4 space-y-4 border-t border-border-light pt-6">
+                    <div class="space-y-4">
                         <!-- <h3 class="font-serif text-xl text-dark-text mb-4">Latest from the Grid</h3> -->
                         @foreach($moreNews->take(5) as $post)
                         <article class="border-b border-border-light pb-4 last:border-b-0">
@@ -118,7 +118,7 @@
             </div>
 
             <!-- Three Column Section -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 border-t border-border-light pt-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pt-8">
                 @foreach($threeColumn as $post)
                 <article class="bg-card-background p-4 rounded-lg shadow-sm">
                     <a href="/post/{{ $post->slug }}" class="block group">

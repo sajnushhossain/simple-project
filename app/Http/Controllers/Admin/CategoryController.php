@@ -47,7 +47,8 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully!');
+        return back()->withInput()->with('error', 'Failed to create category. Please try again.');
     }
 
     /**
@@ -78,7 +79,8 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully!');
+        return back()->withInput()->with('error', 'Failed to update category. Please try again.');
     }
 
     /**
@@ -88,6 +90,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully!');
     }
 }

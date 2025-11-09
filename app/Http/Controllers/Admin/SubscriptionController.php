@@ -18,9 +18,6 @@ class SubscriptionController extends Controller
     {
         $subscription->delete();
 
-        return back()->with('message', [
-            'type' => 'success',
-            'text' => 'Subscription deleted successfully.'
-        ]);
+        return back()->with('success', 'Subscription deleted successfully.');
     }
 }

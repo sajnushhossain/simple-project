@@ -144,10 +144,10 @@
                 <div class="hidden md:block">
                     <h3 class="text-lg font-bold mb-4 text-white">Company</h3>
                     <ul class="space-y-2 text-prothomalo-light-text">
-                        <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">About Us</a></li>
-                        <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">Terms of Service</a></li>
+                        <li><a href="/about" class="hover:text-prothomalo-red transition-colors duration-300">About Us</a></li>
+                        <li><a href="/contact" class="hover:text-prothomalo-red transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="https://www.prothomalo.com/advertise" class="hover:text-prothomalo-red transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="https://www.prothomalo.com/terms" class="hover:text-prothomalo-red transition-colors duration-300">Terms of Service</a></li>
                     </ul>
                 </div>
 
@@ -173,10 +173,10 @@
                         </button>
                         <div class="footer-accordion-content">
                             <ul class="space-y-2 text-prothomalo-light-text mx-auto w-fit">
-                                <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">About Us</a></li>
-                                <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">Contact Us</a></li>
-                                <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">Privacy Policy</a></li>
-                                <li><a href="#" class="hover:text-prothomalo-red transition-colors duration-300">Terms of Service</a></li>
+                                <li><a href="/about" class="hover:text-prothomalo-red transition-colors duration-300">About Us</a></li>
+                                <li><a href="/contact" class="hover:text-prothomalo-red transition-colors duration-300">Contact Us</a></li>
+                                <li><a href="https://www.prothomalo.com/advertise" class="hover:text-prothomalo-red transition-colors duration-300">Privacy Policy</a></li>
+                                <li><a href="https://www.prothomalo.com/terms" class="hover:text-prothomalo-red transition-colors duration-300">Terms of Service</a></li>
                             </ul>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
             </div>
             <div class="mt-10 border-t border-prothomalo-border pt-8 flex flex-col md:flex-row justify-center md:justify-between items-center text-center">
                 <p class="text-sm text-prothomalo-light-text leading-relaxed">&copy; {{ date('Y') }} Simple News. All rights reserved.</p>
-                <p class="text-sm text-prothomalo-light-text mt-2 md:mt-0 md:ml-4 leading-relaxed">Developed by <a href="https://www.sajnush.info" class="text-prothomalo-red hover:underline transition-colors duration-300">Sajnush</a></p>
+                <p class="text-sm text-prothomalo-light-text mt-2 md:mt-0 md:ml-4 leading-relaxed">Developed by <a href="#" class="text-prothomalo-red hover:underline transition-colors duration-300">Sajnush</a></p>
             </div>
         </div>
     </footer>

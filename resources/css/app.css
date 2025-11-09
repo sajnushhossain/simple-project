@@ -64,7 +64,7 @@
 }
 @layer components {
   .category-header { /* This is already defined, keeping it */
-    @apply flex items-center justify-between border-b-2 border-prothomalored pb-2 mb-4;
+    @apply flex items-center justify-between border-b-2 border-blue-500 pb-2 mb-4;
   }
   .search-input-transition {
     @apply transform transition-transform duration-300 ease-in-out origin-left;
