@@ -10,9 +10,21 @@ class HeaderComposer
 {
     public function compose(View $view)
     {
-        $view->with('headerPosts', Post::whereDate('created_at', Carbon::today())
-                                ->orderBy('created_at', 'asc')
-                                ->take(3)
-                                ->get());
+        $headerPosts = Post::whereDate('updated_at', Carbon::today())
+            ->orderBy('created_at', 'asc')
+            ->take(3)
+            ->get();
+
+        if ($headerPosts->isEmpty()) {
+            $latestPostDate = Post::max('created_at');
+            if ($latestPostDate) {
+                $headerPosts = Post::whereDate('created_at', Carbon::parse($latestPostDate)->toDateString())
+                    ->orderBy('created_at', 'asc')
+                    ->take(3)
+                    ->get();
+            }
+        }
+
+        $view->with('headerPosts', $headerPosts ?? collect());
     }
 }
