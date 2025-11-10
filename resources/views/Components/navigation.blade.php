@@ -1,5 +1,5 @@
 <div class="overflow-x-auto hide-scrollbar">
-    <nav class="flex items-center space-x-6 whitespace-nowrap">
+    <nav class="flex items-center space-x-6 whitespace-nowrap" >
         <a href="/"
             class="text-prothomalo-dark-gray hover:text-prothomalo-red transition-colors duration-200 font-semibold text-base">Home</a>
         <a href="/blog"

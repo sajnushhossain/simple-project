@@ -63,7 +63,7 @@
         <div id="main-content" class="flex-1 flex flex-col overflow-hidden transition-all duration-300 ease-in-out">
             <header class="flex justify-between items-center p-4 bg-white border-b border-gray-200 shadow-sm">
                 <div class="flex items-center">
-                    <button id="sidebar-toggle" class="text-gray-500 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors">
+                    <button id="sidebar-toggle" class="text-gray-500 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>

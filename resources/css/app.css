@@ -6,15 +6,15 @@
 @layer base {
   .prothom-alo-theme {
     --color-bg: #ffffff;           /* Main background */
-    --color-surface: #f8f8f8;      /* Header/Footer/Subtle backgrounds */
+    --color-surface: #ffffff;      /* Header/Footer/Subtle backgrounds */
     --color-border: #e5e5e5;       /* Borders and dividers */
     --color-text: #1a1a1a;         /* Body text */
     --color-muted: #666666;        /* Secondary text (dates, authors) */
-    --color-primary: #0052a1;      /* Primary link and accent color (blue, if needed) */
-    --color-primary-hover: #003c75;/* Hover state for primary blue */
-    --color-danger: #d72924;       /* Used for specific highlights or errors */
-    --color-prothomalo-red: #E00000;
-    --color-prothomalo-dark-gray: #212121;
+    --color-primary: #d72924;      /* Primary link and accent color (red) */
+    --color-primary-hover: #d72924;/* Hover state for primary red */
+    --color-danger: #FF0000;       /* Used for specific highlights or errors (red) */
+    --color-prothomalo-red: #FF0000;
+    --color-prothomalo-dark-gray: #242918;
     --color-prothomalo-muted: #4a4a4a;
     --color-prothomalo-light-text: #666666;
     --color-prothomalo-border: #e0e0e0;
