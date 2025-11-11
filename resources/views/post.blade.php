@@ -2,8 +2,8 @@
     <div class="max-w-[1200px] mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Main Post Content -->
-            <main class="lg:col-span-2">
-                <article class="bg-white rounded-lg overflow-hidden">
+            <main class="lg:col-span-2 ">
+                <article class="bg-white rounded-lg overflow-hidden px-4 py-4">
                     <!-- Category Badge -->
                     @if($post->category)
                     <span class="inline-block bg-prothomalo-red text-white text-sm font-bold px-3 py-1 rounded-full mb-4">
@@ -51,7 +51,7 @@
                     <div
                         class="mt-8 pt-6 border-t border-prothomalo-border flex flex-wrap items-center justify-between gap-4">
                         <a href="/blog"
-                            class="inline-flex items-center px-5 py-2 bg-prothomalo-red text-white font-semibold rounded-full hover:bg-red-700 transition-all duration-300 shadow-md">
+                            class="inline-flex items-center px-5 py-2 bg-prothomalo-red text-white font-semibold rounded-full hover:bg-red-700 transition-all duration-300 shadow-md" style="background-color: #ee1414ff; !important;">
                             <i class="fas fa-arrow-left mr-2"></i>
                             Back to Blog
                         </a>
@@ -61,17 +61,17 @@
                             <span class="text-prothomalo-muted font-semibold">Share:</span>
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
                                 target="_blank"
-                                class="w-9 h-9 rounded-full bg-prothomalo-gray flex items-center justify-center text-prothomalo-dark-gray hover:bg-prothomalo-red hover:text-white transition-all duration-300">
+                                class="w-9 h-9 rounded-full bg-prothomalo-gray flex items-center justify-center text-prothomalo-dark-gray hover:bg-prothomalo-red hover:text-red transition-all duration-300" style="color: #f33636ff; !important;">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                             <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($post->title) }}"
                                 target="_blank"
-                                class="w-9 h-9 rounded-full bg-prothomalo-gray flex items-center justify-center text-prothomalo-dark-gray hover:bg-prothomalo-red hover:text-white transition-all duration-300">
+                                class="w-9 h-9 rounded-full bg-prothomalo-gray flex items-center justify-center text-prothomalo-dark-gray hover:bg-prothomalo-red hover:text-red transition-all duration-300" style="color: #f33636ff; !important;">
                                 <i class="fab fa-x-twitter"></i>
                             </a>
                             <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(url()->current()) }}&title={{ urlencode($post->title) }}&summary={{ urlencode(Str::limit(strip_tags($post->body), 150)) }}"
                                 target="_blank"
-                                class="w-9 h-9 rounded-full bg-prothomalo-gray flex items-center justify-center text-prothomalo-dark-gray hover:bg-prothomalo-red hover:text-white transition-all duration-300">
+                                class="w-9 h-9 rounded-full bg-prothomalo-gray flex items-center justify-center text-prothomalo-dark-gray hover:bg-prothomalo-red hover:text-red transition-all duration-300" style="color: #f33636ff; !important;">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -81,7 +81,7 @@
 
             <!-- Sidebar for Related Posts -->
             <aside class="lg:col-span-1">
-                <div class="bg-prothomalo-gray rounded-lg p-6 shadow-sm sticky top-24">
+                <div class="bg-prothomalo-white rounded-lg p-6 shadow-sm sticky top-24">
                     <div class="flex items-center mb-6">
                         <i class="fas fa-newspaper text-prothomalo-red text-xl mr-3"></i>
                         <h3 class="font-serif text-xl text-prothomalo-dark-gray">Related Stories</h3>
@@ -118,7 +118,7 @@
                     <!-- View All Button -->
                     <div class="mt-6 pt-6 border-t border-prothomalo-border">
                         <a href="/blog"
-                            class="block text-center px-4 py-2 bg-prothomalo-red text-white font-semibold rounded-full hover:bg-red-700 transition-colors duration-300">
+                            class="block text-center px-4 py-2 bg-prothomalo-red text-white font-semibold rounded-full hover:bg-red-700 transition-colors duration-300" style="background-color: #ee1414ff; !important;">
                             View All Articles
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>

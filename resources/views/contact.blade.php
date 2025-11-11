@@ -33,7 +33,7 @@
                 </div>
                 <div class="mt-6">
                     <button type="submit"
-                        class="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-prothomalo-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prothomalo-red">
+                        class="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-prothomalo-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prothomalo-red cursor-pointer" style="background-color: #ee1414ff; !important;">
                         Send Message
                     </button>
                 </div>

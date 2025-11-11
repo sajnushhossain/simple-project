@@ -30,7 +30,7 @@
         <div class="flex-1 flex items-center justify-end space-x-4">
             
             @foreach($headerPosts as $post)
-                <a href="/post/{{ $post->slug }}" class="text-black hover:text-red-600 font-semibold hidden lg:inline-block">{{ $post->title }}</a>
+                <a href="/post/{{ $post->slug }}" class="text-black hover:text-red-600 font-semibold hidden lg:inline-block">{{ Str::limit($post->title, 40)}}</a>
             @endforeach
             <div class="hidden lg:block">
                 <form id="desktop-search-form" action="/search" method="GET" class="flex items-center border border-gray-300 rounded-full px-2 py-1">

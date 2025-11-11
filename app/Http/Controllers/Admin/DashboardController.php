@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\WebsiteDataExport;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
@@ -9,6 +10,7 @@ use App\Models\User;
 use App\Models\Contact;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -97,5 +99,10 @@ class DashboardController extends Controller
             'lineChartData' => $lineChartData,
             'pieChartData' => $pieChartData,
         ]);
+    }
+
+    public function download()
+    {
+        return Excel::download(new WebsiteDataExport, 'website-data.xlsx');
     }
 }

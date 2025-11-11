@@ -10,10 +10,10 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->take(10)->get();
+        $posts = Post::latest()->take(37)->get();
         $categories = Category::with(['posts' => function ($query) {
-            $query->latest('updated_at')->take(5);
-        }])->get();
+            $query->latest('updated_at')->take(11);
+        }])->latest()->get();
 
         return view('home', compact('posts', 'categories'));
     }

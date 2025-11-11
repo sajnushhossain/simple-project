@@ -32,6 +32,7 @@ Route::middleware('web')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('admin/dashboard/download', [DashboardController::class, 'download'])->name('admin.dashboard.download');
         Route::get('admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
         Route::get('admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
         Route::post('admin/posts', [AdminPostController::class, 'store'])->name('admin.posts.store');
