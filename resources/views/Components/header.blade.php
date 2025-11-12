@@ -9,10 +9,26 @@
                 <a href="#" class="text-black hover:text-red-600 text-lg"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="text-black hover:text-red-600 text-lg"><i class="fab fa-youtube"></i></a>
                 <span class="text-black mx-2 hidden md:inline-block">|</span>
-                <a href="/about" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">About</a>
-                <a href="/contact" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Contact</a>
-                <span class="text-black mx-2 hidden md:inline-block">|</span>
+                @guest
                 <a href="/login" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Login</a>
+                <a href="/register" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Signup</a>
+                @else
+                <div class="relative">
+                    <button class="text-black hover:text-red-600 font-semibold hidden md:inline-block" onclick="toggleDropdown()">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 hidden">
+                        <div class="px-4 py-2 text-sm text-gray-700">
+                            <p class="font-semibold">{{ Auth::user()->name }}</p>
+                            <p class="text-xs text-gray-500">{{ Auth::user()->email }}</p>
+                        </div>
+                        <form method="POST" action="/logout">
+                            @csrf
+                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                        </form>
+                    </div>
+                </div>
+                @endguest
             </div>
         </div>
     </div>
@@ -83,9 +99,25 @@
                     <a href="#" class="text-red-600 hover:text-red-700 text-2xl"><i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="text-center">
+                    @guest
                     <a href="/login" class="text-black text-lg font-semibold hover:text-red-600">Login</a>
+                    <a href="/register" class="text-black text-lg font-semibold hover:text-red-600">Signup</a>
+                    @else
+                    <div class="relative">
+                        <span class="text-black font-semibold">{{ Auth::user()->name }}</span>
+                        <form method="POST" action="/logout" class="inline">
+                            @csrf
+                            <button type="submit" class="text-black text-lg font-semibold hover:text-red-600 ml-4">Logout</button>
+                        </form>
+                    </div>
+                    @endguest
                 </div>
             </div>
         </div>
     </div>
 </header>
+<script>
+    function toggleDropdown() {
+        document.getElementById('dropdown').classList.toggle('hidden');
+    }
+</script>
