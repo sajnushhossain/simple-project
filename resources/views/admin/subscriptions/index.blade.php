@@ -9,8 +9,14 @@
         <div class="flex flex-col md:flex-row items-stretch md:items-center space-y-4 md:space-y-0 md:space-x-4">
 
             <div class="relative w-full md:w-auto">
+                <button id="copyAllButton"
+                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-blue-500 text-white text-base font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300 cursor-pointer">
+                    Copy All
+                </button>
+            </div>
+            <div class="relative w-full md:w-auto">
                 <button id="sortButton"
-                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-gray-100 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-gray-100 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300 cursor-pointer">
                     Sort By
                     <i id="sortIcon" class="fa-solid fa-angle-down ml-2 transition-transform duration-300"></i>
                 </button>
@@ -120,14 +126,22 @@
         }
 
         function showToast(button) {
+            if (button.id === 'copyAllButton') {
+                toast.textContent = 'All emails copied to clipboard!';
+            } else {
+                toast.textContent = 'Email copied to clipboard!';
+            }
+
             toast.classList.remove('hidden');
-            if (button) {
+
+            if (button.id !== 'copyAllButton') {
                 const originalText = button.textContent;
                 button.textContent = 'Copied!';
                 setTimeout(() => {
                     button.textContent = originalText;
                 }, 2000);
             }
+
             setTimeout(() => {
                 toast.classList.add('hidden');
             }, 3000);
@@ -137,6 +151,24 @@
         document.getElementById('sortButton').addEventListener('click', function() {
             document.getElementById('sortDropdown').classList.toggle('hidden');
             document.getElementById('sortIcon').classList.toggle('rotate-180');
+        });
+
+        // Copy all button functionality
+        document.getElementById('copyAllButton').addEventListener('click', function() {
+            const emails = Array.from(document.querySelectorAll('.copy-email-btn')).map(btn => btn.dataset.email);
+            if (emails.length === 0) return;
+
+            const emailString = emails.join(', ');
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(emailString).then(() => {
+                    showToast(this);
+                }).catch(err => {
+                    fallbackCopy(emailString, this);
+                });
+            } else {
+                fallbackCopy(emailString, this);
+            }
         });
 
         // Close the dropdown if the user clicks outside of it

@@ -126,7 +126,7 @@
             </div>
 
             <!-- Category Sections -->
-            @include('components.newspaper-layout', ['categories' => $categories->take(2)])
+            @include('components.newspaper-layout', ['categories' => $categories->take(3)])
 
             <!-- More News Grid -->
             @if($moreNews->count() > 0)
@@ -162,7 +162,7 @@
 
             <!-- Compact News List -->
             @if($posts->count() > 0)
-            <section class="mb-8 border-t border-border-light pt-8">
+            <!-- <section class="mb-8 border-t border-border-light pt-8">
                 <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight">Latest Updates</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
                     @foreach($posts->take(12) as $post)
@@ -188,7 +188,7 @@
                     </article>
                     @endforeach
                 </div>
-            </section>
+            </section> -->
             @endif
         </div>
         @endif

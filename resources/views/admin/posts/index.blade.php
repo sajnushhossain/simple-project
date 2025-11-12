@@ -16,7 +16,7 @@
         <div class="flex flex-col md:flex-row items-stretch md:items-center space-y-4 md:space-y-0 md:space-x-4">
             <div class="relative w-full md:w-auto">
                 <button id="sortButton"
-                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-gray-100 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-gray-100 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300 cursor-pointer">
                     Sort By
                     <i id="sortIcon" class="fa-solid fa-angle-down ml-2 transition-transform duration-300"></i>
                 </button>
@@ -53,14 +53,14 @@
                             <td class="py-4 px-4 text-gray-500">{{ $post->created_at->format('M j, Y') }}</td>
                             <td class="py-4 px-4 text-center">
                                 <a href="{{ route('admin.posts.edit', $post) }}"
-                                    class="text-blue-600 hover:text-blue-800 mr-4 font-semibold">Edit</a>
+                                    class="text-blue-600 hover:text-blue-800 mr-4 font-semibold cursor-pointer">Edit</a>
                                 <form method="POST" action="{{ route('admin.posts.destroy', $post) }}"
                                     class="inline-block" ;">
                                     <!-- onsubmit="return confirm('Are you sure you want to delete this post?');" -->
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        class="text-red-600 hover:text-red-800 font-semibold">Delete</button>
+                                        class="text-red-600 hover:text-red-800 font-semibold cursor-pointer">Delete</button>
                                 </form>
                             </td>
                         </tr>

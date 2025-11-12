@@ -69,6 +69,9 @@
                         </svg>
                     </button>
                 </div>
+                <div class="flex-1 flex items-center justify-center">
+                    <h2 class="text-xl font-semibold text-gray-800">@yield('title', 'Admin Panel')</h2>
+                </div>
                 <div class="flex items-center space-x-4">
                     <div x-data="{ open: false }" class="relative">
                         <button @click="open = !open" class="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none">

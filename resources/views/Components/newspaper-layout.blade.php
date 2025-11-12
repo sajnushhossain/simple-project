@@ -1,11 +1,11 @@
 @props(['categories'])
 
 <section class="mb-8 border-t border-border-light pt-8">
-    <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight">From the Archives</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+    <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight">Latest Categories</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         @foreach($categories as $category)
         @if($category->posts->isNotEmpty())
-        <div class="border-r border-border-light pr-4 last:border-r-0 min-w-0">
+        <div class="border border-border-light rounded-lg p-4">
             <h3 class="font-serif text-xl text-dark-text mb-4 border-b border-border-light pb-2">
                 <a href="/blog?category={{ $category->slug }}" class="hover:text-primary-red">{{ $category->name }}</a>
             </h3>
