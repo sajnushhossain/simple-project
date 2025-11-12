@@ -14,7 +14,7 @@
                 <a href="/register" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Signup</a>
                 @else
                 <div class="relative">
-                    <button class="text-black hover:text-red-600 font-semibold hidden md:inline-block" onclick="toggleDropdown()">
+                    <button class="text-black hover:text-red-600 font-semibold hidden md:inline-block cursor-pointer" onclick="toggleDropdown()">
                         {{ Auth::user()->name }}
                     </button>
                     <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 hidden">
@@ -24,7 +24,7 @@
                         </div>
                         <form method="POST" action="/logout">
                             @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-black-700 hover:bg-red-600 cursor-pointer">Logout</button>
                         </form>
                     </div>
                 </div>
