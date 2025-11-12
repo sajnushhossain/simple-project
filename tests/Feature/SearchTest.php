@@ -22,8 +22,6 @@ class SearchTest extends TestCase
         $response = $this->get(route('search', ['query' => 'Laravel']));
 
         $response->assertStatus(200);
-        // $response->assertSee($post1->title);
-        // $response->assertDontSee($post2->title);
     }
 
     // /** @test */

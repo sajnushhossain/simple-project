@@ -49,7 +49,13 @@ class PostController extends Controller
         $posts = Post::query()->with('user', 'category');
 
         if ($query) {
-            $posts->where('title', 'like', "%{$query}%");
+            $searchTerms = explode(' ', $query); // Split query into words
+            $posts->where(function ($q) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $q->orWhere('title', 'like', "%{$term}%")
+                      ->orWhere('body', 'like', "%{$term}%");
+                }
+            });
         }
 
         if ($categorySlug) {
