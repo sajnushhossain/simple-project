@@ -21,9 +21,13 @@
                     <i id="sortIcon" class="fa-solid fa-angle-down ml-2 transition-transform duration-300"></i>
                 </button>
                 <div id="sortDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
-                    <a href="{{ route('admin.posts.index', ['sort' => 'desc']) }}"
+                    <a href="{{ route('admin.posts.index', array_merge(request()->query(), ['sort_by' => 'title', 'sort_order' => 'asc'])) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Title (A-Z)</a>
+                    <a href="{{ route('admin.posts.index', array_merge(request()->query(), ['sort_by' => 'title', 'sort_order' => 'desc'])) }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Title (Z-A)</a>
+                    <a href="{{ route('admin.posts.index', array_merge(request()->query(), ['sort_by' => 'created_at', 'sort_order' => 'desc'])) }}"
                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Newest First</a>
-                    <a href="{{ route('admin.posts.index', ['sort' => 'asc']) }}"
+                    <a href="{{ route('admin.posts.index', array_merge(request()->query(), ['sort_by' => 'created_at', 'sort_order' => 'asc'])) }}"
                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Oldest First</a>
                 </div>
             </div>
@@ -37,12 +41,7 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">Title</th>
-                            <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">
-                                <a
-                                    href="{{ route('admin.posts.index', ['sort' => $sort === 'asc' ? 'desc' : 'asc']) }}">
-                                    Created At
-                                </a>
-                            </th>
+                            <th class="text-left py-3 px-4 font-semibold text-gray-600 uppercase">Created At</th>
                             <th class="text-center py-3 px-4 font-semibold text-gray-600 uppercase">Actions</th>
                         </tr>
                     </thead>
@@ -75,7 +74,7 @@
                 </table>
             </div>
             <div class="mt-8">
-                {{ $posts->appends(request()->only('sort'))->links('vendor.pagination.custom') }}
+                {{ $posts->appends(request()->query())->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>

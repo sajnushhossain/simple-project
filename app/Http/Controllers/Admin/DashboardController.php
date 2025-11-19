@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ModeratorAccessInfoExport;
 use App\Exports\WebsiteDataExport;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -104,5 +105,10 @@ class DashboardController extends Controller
     public function download()
     {
         return Excel::download(new WebsiteDataExport, 'website-data.xlsx');
+    }
+
+    public function downloadModeratorAccessInfo()
+    {
+        return Excel::download(new ModeratorAccessInfoExport, 'moderator-access-info.xlsx');
     }
 }

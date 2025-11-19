@@ -1,24 +1,30 @@
-import './bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import './header.js';
-import './footer.js';
-import Alpine from 'alpinejs';
-import toastr from 'toastr';
-import 'toastr/build/toastr.css';
+console.log('app.js loaded');
 
-import Dropzone from 'dropzone';
+try {
+    import './bootstrap';
+    import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+    import './header.js';
+    import './footer.js';
+    import Alpine from 'alpinejs';
+    import toastr from 'toastr';
+    import 'toastr/build/toastr.css';
 
-import 'dropzone/dist/dropzone.css';
+    import Dropzone from 'dropzone';
 
-window.Dropzone = Dropzone;
+    import 'dropzone/dist/dropzone.css';
 
-window.Alpine = Alpine;
-window.toastr = toastr;
+    window.Dropzone = Dropzone;
 
-toastr.options = {
-    "closeButton": true,
-    "progressBar": true,
-    "positionClass": "toast-top-right",
-};
+    window.Alpine = Alpine;
+    window.toastr = toastr;
 
-Alpine.start();
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+    };
+
+    Alpine.start();
+} catch (e) {
+    console.error('Error in app.js', e);
+}

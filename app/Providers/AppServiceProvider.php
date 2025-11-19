@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::unguard();
+        Paginator::useBootstrapFour();
 
         Blade::component('header', Header::class);
         Blade::component('category-subheader', CategorySubheader::class);

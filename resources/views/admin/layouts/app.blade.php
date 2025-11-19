@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Panel') - Simple News</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -21,13 +22,15 @@
             </div>
 
             <nav class="flex-1 overflow-y-auto space-y-2">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
-                    @if(request()->routeIs('admin.dashboard')) bg-blue-600 text-white shadow-md
-                    @else text-black-300 hover:bg-gray-700 hover:text-white
-                    @endif">
-                    <i class="fas fa-tachometer-alt w-5 mr-3"></i>
-                    <span>Dashboard</span>
-                </a>
+                @if(Auth::user()->role === 'admin')
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
+                        @if(request()->routeIs('admin.dashboard')) bg-blue-600 text-white shadow-md
+                        @else text-black-300 hover:bg-gray-700 hover:text-white
+                        @endif">
+                        <i class="fas fa-tachometer-alt w-5 mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                @endif
                 <a href="{{ route('admin.posts.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
                     @if(request()->routeIs('admin.posts.*')) bg-blue-600 text-white shadow-md
                     @else text-black-300 hover:bg-gray-700 hover:text-white
@@ -35,27 +38,36 @@
                     <i class="fas fa-pencil-alt w-5 mr-3"></i>
                     <span>Posts</span>
                 </a>
-                <a href="{{ route('admin.categories.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
-                    @if(request()->routeIs('admin.categories.*')) bg-blue-600 text-white shadow-md
-                    @else text-black-300 hover:bg-gray-700 hover:text-white
-                    @endif">
-                    <i class="fas fa-folder w-5 mr-3"></i>
-                    <span>Categories</span>
-                </a>
-                <a href="{{ route('admin.contacts.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
-                    @if(request()->routeIs('admin.contacts.*')) bg-blue-600 text-white shadow-md
-                    @else text-black-300 hover:bg-gray-700 hover:text-white
-                    @endif">
-                    <i class="fas fa-envelope w-5 mr-3"></i>
-                    <span>Contacts</span>
-                </a>
-                <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
-                    @if(request()->routeIs('admin.subscriptions.*')) bg-blue-600 text-white shadow-md
-                    @else text-black-300 hover:bg-gray-700 hover:text-white
-                    @endif">
-                    <i class="fas fa-users w-5 mr-3"></i>
-                    <span>Subscriptions</span>
-                </a>
+                @if(Auth::user()->role === 'admin')
+                    <a href="{{ route('admin.categories.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
+                        @if(request()->routeIs('admin.categories.*')) bg-blue-600 text-white shadow-md
+                        @else text-black-300 hover:bg-gray-700 hover:text-white
+                        @endif">
+                        <i class="fas fa-folder w-5 mr-3"></i>
+                        <span>Categories</span>
+                    </a>
+                    <a href="{{ route('admin.contacts.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
+                        @if(request()->routeIs('admin.contacts.*')) bg-blue-600 text-white shadow-md
+                        @else text-black-300 hover:bg-gray-700 hover:text-white
+                        @endif">
+                        <i class="fas fa-envelope w-5 mr-3"></i>
+                        <span>Contacts</span>
+                    </a>
+                    <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
+                        @if(request()->routeIs('admin.subscriptions.*')) bg-blue-600 text-white shadow-md
+                        @else text-black-300 hover:bg-gray-700 hover:text-white
+                        @endif">
+                        <i class="fas fa-users w-5 mr-3"></i>
+                        <span>Subscriptions</span>
+                    </a>
+                    <a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
+                        @if(request()->routeIs('admin.users.*')) bg-blue-600 text-white shadow-md
+                        @else text-black-300 hover:bg-gray-700 hover:text-white
+                        @endif">
+                        <i class="fas fa-user w-5 mr-3"></i>
+                        <span>Local Users</span>
+                    </a>
+                @endif
             </nav>
         </aside>
 
@@ -72,18 +84,21 @@
                 <div class="flex-1 flex items-center justify-center">
                     <h2 class="text-xl font-semibold text-gray-800">@yield('title', 'Admin Panel')</h2>
                 </div>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-4 ">
                     <div x-data="{ open: false }" class="relative">
-                        <button @click="open = !open" class="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <button @click="open = !open" class="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none cursor-pointer">
                             <img class="h-8 w-8 rounded-full object-cover" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mp" alt="User Avatar">
                             <span class="hidden md:inline-block ml-2">{{ Auth::user()->name }}</span>
                             <i class="fas fa-chevron-down w-3 h-3 ml-1"></i>
                         </button>
                         <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 border-grey-200 
                         bg-white rounded-lg shadow-xl z-20" style="display: none;">
+                            <a href="/" class="block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100">
+                                Return to News
+                            </a>
                             <form action="/logout" method="POST">
                                 @csrf
-                                <button type="submit" class="w-full text-left block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100">
+                                <button type="submit" class="w-full text-left block px-4 py-4 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                                     Logout
                                 </button>
                             </form>

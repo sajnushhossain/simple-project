@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\SubscriptionController as AdminSubscriptionContro
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\Auth\LoginController;
@@ -34,9 +35,10 @@ Route::middleware('web')->group(function () {
     Route::get('register', [RegisterController::class, 'create']);
     Route::post('register', [RegisterController::class, 'store']);
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'role'])->group(function () {
         Route::get('admin', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('admin/dashboard/download', [DashboardController::class, 'download'])->name('admin.dashboard.download');
+        Route::get('admin/dashboard/download-moderator-access-info', [DashboardController::class, 'downloadModeratorAccessInfo'])->name('admin.dashboard.downloadModeratorAccessInfo');
         Route::get('admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
         Route::get('admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
         Route::post('admin/posts', [AdminPostController::class, 'store'])->name('admin.posts.store');
@@ -47,5 +49,10 @@ Route::middleware('web')->group(function () {
         Route::resource('admin/categories', CategoryController::class, ['as' => 'admin']);
         Route::resource('admin/contacts', ContactController::class, ['as' => 'admin']);
         Route::resource('admin/subscriptions', AdminSubscriptionController::class, ['as' => 'admin']);
+
+        // Explicitly define routes for admin/users to avoid conflicts
+        Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');
+        Route::post('admin/users/{user}/update-role', [UserController::class, 'updateRole'])->name('admin.users.update_role');
+        Route::delete('admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
 });

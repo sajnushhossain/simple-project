@@ -97,14 +97,20 @@
                 @endforelse
             </div>
         </div>
-        <!-- ggg -->
+        
         <div class="flex justify-end mb-4">
             <a href="{{ route('admin.dashboard.download') }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <i class="fas fa-download mr-2"></i> Download Monthly Sheet
             </a>
         </div>
-        <!-- ggg -->
+
+        <div class="flex justify-end mb-4">
+            <a href="{{ route('admin.dashboard.downloadModeratorAccessInfo') }}"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                <i class="fas fa-download mr-2"></i> Download Moderator Access Info
+            </a>
+        </div>
     </div>
 </div>
 @endsection

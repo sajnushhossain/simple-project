@@ -14,18 +14,18 @@ class AdminPostController extends Controller
 {
     public function index(Request $request)
     {
-        $sort = $request->get('sort', 'desc');
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
         $query = Post::query();
 
         if ($request->has('search')) {
             $query->where('title', 'like', '%' . $request->input('search') . '%');
         }
 
-        $posts = $query->orderBy('created_at', $sort)->paginate(10);
+        $posts = $query->orderBy($sortBy, $sortOrder)->paginate(10);
         
         return view('admin.posts.index', [
             'posts' => $posts,
-            'sort' => $sort,
         ]);
     }
 
