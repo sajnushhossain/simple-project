@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function getAvatarUrl(): string
+    {
+        $name = urlencode($this->name);
+        return "https://unavatar.io/{$this->email}?fallback=https://ui-avatars.com/api/?name={$name}&color=7F9CF5&background=EBF4FF";
+    }
 }

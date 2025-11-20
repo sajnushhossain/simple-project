@@ -9,15 +9,20 @@
                 <a href="#" class="text-black hover:text-red-600 text-lg"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="text-black hover:text-red-600 text-lg"><i class="fab fa-youtube"></i></a>
                 <span class="text-black mx-2 hidden md:inline-block">|</span>
+                <a href="/about" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">About</a>
+                <a href="/contact" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Contact</a>
+                </a>
+                <span class="text-black mx-2 hidden md:inline-block">|</span>
                 @guest
                 <a href="/login" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Login</a>
                 <a href="/register" class="text-black hover:text-red-600 font-semibold hidden md:inline-block">Signup</a>
                 @else
                 <div class="relative">
                     <button class="text-black hover:text-red-600 font-semibold hidden md:inline-block cursor-pointer" onclick="toggleDropdown()">
+                        <img src="{{ Auth::user()->getAvatarUrl() }}" alt="Avatar" class="w-8 h-8 rounded-full mr-2 inline-block" referrerpolicy="no-referrer">
                         {{ Auth::user()->name }}
                     </button>
-                    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 hidden">
+                    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden" style="width: 210px !important;">
                         <div class="px-4 py-2 text-sm text-gray-700">
                             <p class="font-semibold">{{ Auth::user()->name }}</p>
                             <p class="text-xs text-gray-500">{{ Auth::user()->email }}</p>
@@ -109,6 +114,7 @@
                     <a href="/register" class="text-black text-lg font-semibold hover:text-red-600">Signup</a>
                     @else
                     <div class="relative">
+                        <img src="{{ Auth::user()->getAvatarUrl() }}" alt="Avatar" class="w-8 h-8 rounded-full mr-2 inline-block" referrerpolicy="no-referrer">
                         <span class="text-black font-semibold">{{ Auth::user()->name }}</span>
                         <form method="POST" action="/logout" class="inline">
                             @csrf

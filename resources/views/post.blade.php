@@ -125,6 +125,9 @@
                     </div>
                 </div>
             </aside>
+            
         </div>
     </div>
+    <!-- Advertisement Section-->
+                     <x-ad-unit position="content-middle" />
 </x-layout>

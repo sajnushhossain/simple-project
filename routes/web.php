@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\Auth\LoginController;
@@ -49,6 +50,7 @@ Route::middleware('web')->group(function () {
         Route::resource('admin/categories', CategoryController::class, ['as' => 'admin']);
         Route::resource('admin/contacts', ContactController::class, ['as' => 'admin']);
         Route::resource('admin/subscriptions', AdminSubscriptionController::class, ['as' => 'admin']);
+        Route::resource('admin/advertisements', AdvertisementController::class, ['as' => 'admin']);
 
         // Explicitly define routes for admin/users to avoid conflicts
         Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');

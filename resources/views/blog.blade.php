@@ -8,7 +8,8 @@
                 Browse through our collection of articles and reports.
             </p>
         </div>
-
+<!-- Advertisement Section-->
+                     <x-ad-unit position="content-middle" />
         @if($posts->count() === 0)
         <div class="text-center py-24">
             <i class="far fa-newspaper text-7xl text-prothomalo-light-text mb-8"></i>

@@ -60,6 +60,13 @@
                         <i class="fas fa-users w-5 mr-3"></i>
                         <span>Subscriptions</span>
                     </a>
+                    <a href="{{ route('admin.advertisements.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
+                        @if(request()->routeIs('admin.advertisements.*')) bg-blue-600 text-white shadow-md
+                        @else text-black-300 hover:bg-gray-700 hover:text-white
+                        @endif">
+                        <i class="fas fa-ad w-5 mr-3"></i>
+                        <span>Advertisements</span>
+                    </a>
                     <a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
                         @if(request()->routeIs('admin.users.*')) bg-blue-600 text-white shadow-md
                         @else text-black-300 hover:bg-gray-700 hover:text-white
@@ -87,7 +94,7 @@
                 <div class="flex items-center space-x-4 ">
                     <div x-data="{ open: false }" class="relative">
                         <button @click="open = !open" class="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none cursor-pointer">
-                            <img class="h-8 w-8 rounded-full object-cover" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mp" alt="User Avatar">
+                            <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->getAvatarUrl() }}" alt="User Avatar" referrerpolicy="no-referrer">
                             <span class="hidden md:inline-block ml-2">{{ Auth::user()->name }}</span>
                             <i class="fas fa-chevron-down w-3 h-3 ml-1"></i>
                         </button>

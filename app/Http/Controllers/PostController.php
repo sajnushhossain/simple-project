@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -14,8 +15,17 @@ class PostController extends Controller
         $categories = Category::with(['posts' => function ($query) {
             $query->latest('updated_at')->take(11);
         }])->latest()->get();
+        // Fetch posts that are between 1 and 3 days old (inclusive of 3 days ago, exclusive of 1 day ago)
+        $recentPosts = Post::where('created_at', '>=', Carbon::now()->subDays(3)->startOfDay())
+                            ->where('created_at', '<', Carbon::now()->subDays(1)->startOfDay())
+                            ->latest()
+                            ->take(5)
+                            ->get();
+        $randomCategories = Category::inRandomOrder()->take(2)->with(['posts' => function ($query) {
+            $query->latest()->take(2);
+        }])->get();
 
-        return view('home', compact('posts', 'categories'));
+        return view('home', compact('posts', 'categories', 'recentPosts', 'randomCategories'));
     }
 
     public function blog(Request $request)
