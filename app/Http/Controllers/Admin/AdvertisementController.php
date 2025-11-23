@@ -7,7 +7,6 @@ use App\Http\Requests\StoreAdvertisementRequest;
 use App\Http\Requests\UpdateAdvertisementRequest;
 use App\Models\Advertisement;
 use App\Models\Position;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
@@ -18,6 +17,7 @@ class AdvertisementController extends Controller
     public function index()
     {
         $advertisements = Advertisement::with('positions')->latest()->paginate(10);
+
         return view('admin.advertisements.index', compact('advertisements'));
     }
 
@@ -102,6 +102,7 @@ class AdvertisementController extends Controller
             Storage::disk('public')->delete($advertisement->image_path);
         }
         $advertisement->delete();
+
         return redirect()->route('admin.advertisements.index')->with('success', 'Advertisement deleted successfully.');
     }
 }

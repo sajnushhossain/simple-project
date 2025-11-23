@@ -2,13 +2,11 @@
 
 namespace App\Providers;
 
-
 use App\Http\View\Composers\CategoryComposer;
 use App\Http\View\Composers\HeaderComposer;
+use App\Http\View\Composers\NavigationComposer;
 use App\View\Components\CategorySubheader;
 use App\View\Components\Header;
-use App\Http\View\Composers\NavigationComposer;
-use App\Http\View\Composers\PostComposer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;

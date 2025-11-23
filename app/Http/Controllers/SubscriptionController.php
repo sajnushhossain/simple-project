@@ -17,7 +17,7 @@ class SubscriptionController extends Controller
 
         return redirect('/')->with('message', [
             'type' => 'success',
-            'text' => 'Thank you for subscribing to our newsletter!'
+            'text' => 'Thank you for subscribing to our newsletter!',
         ]);
     }
 }

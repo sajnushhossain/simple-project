@@ -7,8 +7,8 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AdminPostController extends Controller
 {
@@ -19,11 +19,11 @@ class AdminPostController extends Controller
         $query = Post::query();
 
         if ($request->has('search')) {
-            $query->where('title', 'like', '%' . $request->input('search') . '%');
+            $query->where('title', 'like', '%'.$request->input('search').'%');
         }
 
         $posts = $query->orderBy($sortBy, $sortOrder)->paginate(10);
-        
+
         return view('admin.posts.index', [
             'posts' => $posts,
         ]);
@@ -32,6 +32,7 @@ class AdminPostController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -61,13 +62,15 @@ class AdminPostController extends Controller
             throw $e;
         } catch (\Exception $e) {
             Log::error('Error creating post', ['message' => $e->getMessage()]);
-            return redirect()->back()->with('error', 'Error creating post: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Error creating post: '.$e->getMessage());
         }
     }
 
     public function edit(Post $post)
     {
         $categories = Category::all();
+
         return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
@@ -104,10 +107,12 @@ class AdminPostController extends Controller
 
     public function destroy(Post $post)
     {
+        if (auth()->user()->role === 'moderator') {
+            return redirect()->route('admin.posts.index')->with('error', 'You are not authorized to delete posts.');
+        }
+
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully!');
     }
-
-    
 }

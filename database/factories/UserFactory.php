@@ -43,5 +43,4 @@ class UserFactory extends Factory
     }
 }
 
-
-// read the complete website and fix the design properly please   
+// read the complete website and fix the design properly please

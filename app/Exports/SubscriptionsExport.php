@@ -10,8 +10,8 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 class SubscriptionsExport implements FromCollection, WithHeadings, WithTitle
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return Subscription::all(['email', 'created_at']);

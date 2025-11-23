@@ -1,6 +1,8 @@
 <x-layout>
+    <!-- Advertisement -->
+    <x-ad-unit position="top-banner" />
     <div class="font-sans">
-        @if($posts->isEmpty())
+        @if(empty($featured))
         <div class="container mx-auto px-4 py-20 text-center">
             <div class="max-w-md mx-auto">
                 <i class="fas fa-newspaper text-6xl text-gray-300 mb-4"></i>
@@ -9,13 +11,6 @@
             </div>
         </div>
         @else
-        @php
-        $featured = $posts->shift();
-        $rightGrid = $posts->splice(0, 8);
-        $threeColumn = $posts->splice(0, 3);
-        $moreNews = $posts->splice(0, 11);
-        @endphp
-
         <!-- Main Content Container -->
         <div class="max-w-screen-xl mx-auto px-4 py-4">
 
@@ -48,7 +43,7 @@
                     <!-- Two Stories Below Featured -->
                     <div class="mt-8 flex-grow">
                         @foreach($randomCategories as $category)
-                            <h2 class="font-serif text-2xl text-dark-text mb-4">{{ $category->name }}</h2>
+                            {{-- <h2 class="font-serif text-2xl text-dark-text mb-4">{{ $category->name }}</h2> --}}
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 @foreach($category->posts as $post)
                                     <article class="bg-card-background p-4 rounded-lg shadow-sm">
@@ -60,7 +55,7 @@
                                                      width="500" height="281">
                                             </div>
                                             <h3 class="font-serif text-xl text-dark-text mb-2 group-hover:text-primary-red transition-colors leading-tight">
-                                                {{ $post->title }}
+                                                {{ Str::words($post->title, 10) }}
                                             </h3>
                                             <div class="text-xs text-light-text">
                                                 {{ $post->created_at->diffForHumans() }}
@@ -71,16 +66,19 @@
                             </div>
                         @endforeach
                     </div>
+                    <!-- Advertisement -->
+                     <x-ad-unit position="middle-left" />
                 </div>
 
                 <!-- Right: 2x2 Thumbnail Grid -->
-                <div class="lg:col-span-1">
+                <div class="lg:col-span-1 bg-card-background p-3 rounded-lg shadow-sm">
+                    <!-- Advertisement -->
+                    <x-ad-unit position="sidebar-square" />
                     <div class="mb-6">
-                        <x-ad-unit position="sidebar-square" />
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         @foreach($rightGrid as $post)
-                        <article class="bg-card-background p-3 rounded-lg shadow-sm">
+                        <article class="">
                             <a href="/post/{{ $post->slug }}" class="block group">
                                 <div class="relative overflow-hidden mb-2 aspect-square">
                                     <img src="{{ $post->image ? asset('storage/' . $post->image) : 'https://images.unsplash.com/photo-1553047503-9596d9494389?crop=entropy&cs=srgb&fm=jpg&q=85&w=300' }}"
@@ -112,13 +110,13 @@
             <x-ad-unit position="content-middle" />
 
             <!-- Category Sections -->
-            @include('components.newspaper-layout', ['categories' => $categories->take(3)])
+            @include('components.newspaper-layout', ['categories' => $categories->take(2)])
 
-            @if($recentPosts->count() > 0)
+            @if($aboutToKnowPosts->count() > 0)
             <section class="mb-8 border-t border-border-light pt-8">
                 <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight text-center">About to know</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    @foreach($recentPosts as $index => $post)
+                    @foreach($aboutToKnowPosts as $index => $post)
                     <article
                         class="bg-card-background p-4 rounded-lg shadow-sm {{ $index === 0 ? 'lg:col-span-2' : '' }}">
                         <a href="/post/{{ $post->slug }}" class="block group">
@@ -147,8 +145,8 @@
 
             <!-- More News Grid -->
             @if($moreNews->count() > 0)
-            <section class="mb-8 border-t border-border-light pt-8">
-                <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight">More News</h2>
+            <section class="pt-8">
+                <!-- <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight">More News</h2> -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     @foreach($moreNews as $index => $post)
                     <article

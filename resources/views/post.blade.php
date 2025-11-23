@@ -6,11 +6,12 @@
                 <article class="bg-white rounded-lg overflow-hidden px-4 py-4">
                     <!-- Category Badge -->
                     @if($post->category)
-                    <span class="inline-block bg-prothomalo-red text-white text-sm font-bold px-3 py-1 rounded-full mb-4">
+                    <span class="inline-block bg-prothomalo-red text-black text-sm font-bold px-3 py-1 rounded-full">
                         {{ $post->category->name }}
                     </span>
                     @endif
-
+                    <!-- Advertise -->
+                     <x-ad-unit position="middle-left" />
                     <!-- Title -->
                     <h1 class="font-serif text-3xl md:text-4xl text-prothomalo-dark-gray mb-4 leading-tight">
                         {{ $post->title }}

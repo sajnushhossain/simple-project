@@ -10,7 +10,7 @@ class SubscriptionController extends Controller
     public function index()
     {
         return view('admin.subscriptions.index', [
-            'subscriptions' => Subscription::latest()->paginate(10)
+            'subscriptions' => Subscription::latest()->paginate(10),
         ]);
     }
 

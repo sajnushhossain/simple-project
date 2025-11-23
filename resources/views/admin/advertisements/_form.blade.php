@@ -46,7 +46,7 @@
     <div>
         <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
         <div class="mt-1">
-            <input type="file" id="image" name="image" class="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/gif,image/svg+xml,image/webp" class="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
         </div>
         @if (isset($advertisement) && $advertisement->image_path)
             <div class="mt-4">

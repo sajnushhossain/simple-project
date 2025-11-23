@@ -10,8 +10,8 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 class ContactsExport implements FromCollection, WithHeadings, WithTitle
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return Contact::all(['name', 'email', 'subject', 'message', 'created_at']);

@@ -43,21 +43,19 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:categories',
-        ],);
+        ], );
 
         Category::create($validated);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully!');
+
         return back()->withInput()->with('error', 'Failed to create category. Please try again.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
-    {
-        
-    }
+    public function show(Category $category) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -74,12 +72,13 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
+            'slug' => 'required|string|max:255|unique:categories,slug,'.$category->id,
         ]);
 
         $category->update($validated);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully!');
+
         return back()->withInput()->with('error', 'Failed to update category. Please try again.');
     }
 

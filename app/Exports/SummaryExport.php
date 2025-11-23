@@ -28,7 +28,7 @@ class SummaryExport implements FromCollection, WithHeadings, WithTitle
                 'Total Categories' => $categoriesCount,
                 'Total Messages' => $contactsCount,
                 'Total Subscribers' => $subscriptionsCount,
-            ]
+            ],
         ]);
     }
 

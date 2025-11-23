@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class AdUnit extends Component
 {
     public ?Advertisement $ad;
+
     public string $imageClasses;
 
     /**

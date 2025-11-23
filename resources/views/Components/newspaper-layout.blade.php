@@ -1,7 +1,7 @@
 @props(['categories'])
 
-<section class="mb-8 border-t border-border-light pt-8">
-    <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight text-center">Latest Categories</h2>
+<section class="mb-8 pt-8">
+    <!-- <h2 class="font-serif text-3xl text-dark-text mb-6 leading-tight text-center">Latest Categories</h2> -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         @foreach($categories as $category)
         @if($category->posts->isNotEmpty())

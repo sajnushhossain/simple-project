@@ -26,15 +26,13 @@
                         <div class="px-4 py-2 text-sm text-gray-700">
                             <p class="font-semibold">{{ Auth::user()->name }}</p>
                             <p class="text-xs text-gray-500">{{ Auth::user()->email }}</p>
-                            @if(Auth::user()->role === 'admin')
-                                <a href="{{ route('admin.dashboard') }}" class="">Dashboard</a>
-                            @elseif(Auth::user()->role === 'moderator')
-                                <a href="{{ route('admin.posts.index') }}" class="">Dashboard</a>
+                            @if(Auth::user()->role === 'admin' || Auth::user()->role === 'moderator')
+                                <a href="{{ route('admin.dashboard') }}" class="block w-full text-left py-2 text-sm text-black-700  cursor-pointer">Dashboard</a>
                             @endif
                         </div>
                         <form method="POST" action="/logout">
                             @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-black-700 hover:bg-red-600 cursor-pointer">Logout</button>
+                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-black-700 cursor-pointer">Logout</button>
                         </form>
                     </div>
                 </div>

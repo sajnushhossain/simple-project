@@ -5,27 +5,41 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class PostController extends Controller
 {
     public function index()
     {
         $posts = Post::latest()->take(37)->get();
+        $featured = $posts->shift();
+
+        if (! $featured) {
+            return view('home', [
+                'featured' => null,
+                'posts' => collect(),
+                'rightGrid' => collect(),
+                'threeColumn' => collect(),
+                'moreNews' => collect(),
+                'aboutToKnowPosts' => collect(),
+                'categories' => collect(),
+                'randomCategories' => collect(),
+            ]);
+        }
+
+        $rightGrid = $posts->splice(0, 8);
+        $threeColumn = $posts->splice(0, 3);
+        $moreNews = $posts->splice(0, 11);
+        $aboutToKnowPosts = $posts->splice(0, 7);
+
         $categories = Category::with(['posts' => function ($query) {
             $query->latest('updated_at')->take(11);
         }])->latest()->get();
-        // Fetch posts that are between 1 and 3 days old (inclusive of 3 days ago, exclusive of 1 day ago)
-        $recentPosts = Post::where('created_at', '>=', Carbon::now()->subDays(3)->startOfDay())
-                            ->where('created_at', '<', Carbon::now()->subDays(1)->startOfDay())
-                            ->latest()
-                            ->take(5)
-                            ->get();
-        $randomCategories = Category::inRandomOrder()->take(2)->with(['posts' => function ($query) {
+
+        $randomCategories = Category::has('posts', '>=', 2)->inRandomOrder()->take(2)->with(['posts' => function ($query) {
             $query->latest()->take(2);
         }])->get();
 
-        return view('home', compact('posts', 'categories', 'recentPosts', 'randomCategories'));
+        return view('home', compact('posts', 'featured', 'rightGrid', 'threeColumn', 'moreNews', 'aboutToKnowPosts', 'categories', 'randomCategories'));
     }
 
     public function blog(Request $request)
@@ -63,7 +77,7 @@ class PostController extends Controller
             $posts->where(function ($q) use ($searchTerms) {
                 foreach ($searchTerms as $term) {
                     $q->orWhere('title', 'like', "%{$term}%")
-                      ->orWhere('body', 'like', "%{$term}%");
+                        ->orWhere('body', 'like', "%{$term}%");
                 }
             });
         }

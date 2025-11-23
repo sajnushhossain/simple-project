@@ -68,7 +68,7 @@
                             <td class="py-4 px-4 text-gray-800">{{ $user->email }}</td>
                             <td class="py-4 px-4 text-gray-500">
                                 <select name="roles[{{ $user->id }}]" class="form-select rounded-md shadow-sm w-full cursor-pointer">
-                                    <!-- <option value="admin" @if($user->role === 'admin') selected @endif>Admin</option> -->
+                                    <option value="admin" @if($user->role === 'admin') selected @endif>Admin</option>
                                     <option value="user" @if($user->role === 'user') selected @endif>User</option>
                                     <option value="moderator" @if($user->role === 'moderator') selected @endif>Moderator</option>
                                 </select>
@@ -81,7 +81,7 @@
                                 <button class="copy-email-btn cursor-pointer text-blue-600 hover:text-blue-800 mr-4 font-semibold" data-email="{{ $user->email }}">
                                     Copy Email
                                 </button>
-                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline-block";>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 cursor-pointer hover:text-red-800 font-semibold">Delete</button>

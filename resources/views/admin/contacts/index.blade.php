@@ -34,6 +34,13 @@
         </div>
     </div>
 
+    @if (Session::has('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">{{ Session::get('error') }}</span>
+        </div>
+    @endif
+
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="p-6">
             <div class="overflow-x-auto">

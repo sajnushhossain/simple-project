@@ -10,8 +10,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class ModeratorAccessInfoExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return ModeratorAccessLog::with('user')
@@ -19,9 +19,6 @@ class ModeratorAccessInfoExport implements FromCollection, WithHeadings, WithMap
             ->get();
     }
 
-    /**
-    * @return array
-    */
     public function headings(): array
     {
         return [
@@ -33,9 +30,8 @@ class ModeratorAccessInfoExport implements FromCollection, WithHeadings, WithMap
     }
 
     /**
-    * @param ModeratorAccessLog $log
-    * @return array
-    */
+     * @param  ModeratorAccessLog  $log
+     */
     public function map($log): array
     {
         return [

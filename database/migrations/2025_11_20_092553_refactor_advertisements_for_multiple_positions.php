@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-use App\Models\Advertisement;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -67,8 +66,8 @@ return new class extends Migration
         $relations = DB::table('advertisement_position')->get();
         $positionMap = DB::table('positions')->pluck('slug', 'id');
 
-        foreach($relations as $relation) {
-            if(isset($positionMap[$relation->position_id])) {
+        foreach ($relations as $relation) {
+            if (isset($positionMap[$relation->position_id])) {
                 DB::table('advertisements')->where('id', $relation->advertisement_id)->update(['position' => $positionMap[$relation->position_id]]);
             }
         }

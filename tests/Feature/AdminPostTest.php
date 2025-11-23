@@ -8,7 +8,6 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-
 class AdminPostTest extends TestCase
 {
     use RefreshDatabase;
@@ -23,7 +22,7 @@ class AdminPostTest extends TestCase
             'title' => 'New Post',
             'body' => 'This is the body',
             'category_id' => 1,
-            'image' => UploadedFile::fake()->image('post.jpg')
+            'image' => UploadedFile::fake()->image('post.jpg'),
         ]);
 
         $this->assertDatabaseHas('posts', ['title' => 'New Post']);

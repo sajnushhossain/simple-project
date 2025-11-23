@@ -34,6 +34,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->email === 'sajnushhossain.cse@gmail.com') {
+            return back()->with('error', 'You cannot delete the default admin user.');
+        }
+
         $user->delete();
 
         return back()->with('success', 'User deleted successfully.');
@@ -44,6 +48,10 @@ class UserController extends Controller
      */
     public function updateRole(Request $request, User $user)
     {
+        if ($user->email === 'sajnushhossain.cse@gmail.com') {
+            return response()->json(['error' => 'You cannot change the role of the default admin user.'], 403);
+        }
+
         $validated = $request->validate([
             'role' => 'required|string|in:admin,user,moderator',
         ]);
@@ -53,7 +61,7 @@ class UserController extends Controller
 
             return response()->json(['success' => 'User role updated successfully.']);
         } catch (\Exception $e) {
-            Log::error('Error updating user role: ' . $e->getMessage());
+            Log::error('Error updating user role: '.$e->getMessage());
 
             $errorData = ['error' => 'There was an error updating the user role. Please try again.'];
             if (config('app.debug')) {

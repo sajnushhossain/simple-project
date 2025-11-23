@@ -23,7 +23,7 @@ class StoreAdvertisementRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'target_url' => 'nullable|url',
             'is_active' => 'nullable|boolean',
             'positions' => 'required|array',

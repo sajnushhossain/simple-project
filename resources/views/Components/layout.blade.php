@@ -23,7 +23,6 @@
 
 <body class="font-sans antialiased {{ request()->is('login') ? 'bg-white' : 'bg-gray-100' }}">
     <div class="prothom-alo-theme">
-        <x-ad-unit position="top-banner" />
         @if(!request()->is('login'))
             <x-header />
             <x-category-subheader />

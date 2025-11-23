@@ -15,6 +15,7 @@
             </div>
         </div>
     </div>
+    @if(Auth::user()->role === 'admin')
     <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
         <div class="flex items-center">
             <div class="bg-green-100 text-green-600 h-12 w-12 flex items-center justify-center rounded-full mr-4">
@@ -48,18 +49,21 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <div class="lg:col-span-2 bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+    <div class="{{ Auth::user()->role === 'admin' ? 'lg:col-span-2' : 'lg:col-span-3' }} bg-white rounded-lg p-6 shadow-sm border border-gray-200">
         <h3 class="text-lg font-semibold text-gray-900 mb-4">Activity in Last 7 Days</h3>
         <div>
             <div class="w-full h-80">
                 <canvas id="postsChart"></canvas>
             </div>
+            @if(isset($pieChartData))
             <div class="w-full h-80 mt-8">
                 <canvas id="pieChart"></canvas>
             </div>
+            @endif
         </div>
     </div>
 
@@ -79,6 +83,7 @@
             </div>
         </div>
 
+        @if(Auth::user()->role === 'admin')
         <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Messages</h3>
             <div class="divide-y divide-gray-100">
@@ -111,6 +116,7 @@
                 <i class="fas fa-download mr-2"></i> Download Moderator Access Info
             </a>
         </div>
+        @endif
     </div>
 </div>
 @endsection
@@ -147,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    @if(isset($pieChartData))
     const pieCtx = document.getElementById('pieChart').getContext('2d');
     const pieChartData = @json($pieChartData);
 
@@ -174,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    @endif
 });
 </script>
 @endpush

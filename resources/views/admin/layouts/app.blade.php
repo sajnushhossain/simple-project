@@ -46,6 +46,8 @@
                         <i class="fas fa-folder w-5 mr-3"></i>
                         <span>Categories</span>
                     </a>
+                @endif
+                @if(Auth::user()->role === 'admin' || Auth::user()->role === 'moderator')
                     <a href="{{ route('admin.contacts.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
                         @if(request()->routeIs('admin.contacts.*')) bg-blue-600 text-white shadow-md
                         @else text-black-300 hover:bg-gray-700 hover:text-white
@@ -53,6 +55,8 @@
                         <i class="fas fa-envelope w-5 mr-3"></i>
                         <span>Contacts</span>
                     </a>
+                @endif
+                @if(Auth::user()->role === 'admin')
                     <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-xl transition-all duration-200 font-medium group
                         @if(request()->routeIs('admin.subscriptions.*')) bg-blue-600 text-white shadow-md
                         @else text-black-300 hover:bg-gray-700 hover:text-white
@@ -72,7 +76,7 @@
                         @else text-black-300 hover:bg-gray-700 hover:text-white
                         @endif">
                         <i class="fas fa-user w-5 mr-3"></i>
-                        <span>Local Users</span>
+                        <span>Users</span>
                     </a>
                 @endif
             </nav>
@@ -135,18 +139,14 @@
                     sidebar.style.transform = 'translateX(0)';
                     mainContent.style.marginLeft = '16rem'; // 256px which is w-64
                 } else {
-                    sidebar.style.transform = 'translateX(-100%)';
                     mainContent.style.marginLeft = '0';
+                    sidebar.style.transform = 'translateX(-100%)';
                 }
             });
         });
 
         @if(Session::has('success'))
             toastr.success("{{ Session::get('success') }}");
-        @endif
-
-        @if(Session::has('error'))
-            toastr.error("{{ Session::get('error') }}");
         @endif
     </script>
 

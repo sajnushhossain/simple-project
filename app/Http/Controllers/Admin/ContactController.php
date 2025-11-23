@@ -20,7 +20,7 @@ class ContactController extends Controller
         $contacts = Contact::query();
 
         if ($search) {
-            $contacts->where('name', 'like', '%' . $search . '%');
+            $contacts->where('name', 'like', '%'.$search.'%');
         }
 
         $contacts = $contacts->orderBy($sortBy, $sortOrder)->paginate(10);
@@ -96,6 +96,10 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
+        if (auth()->user()->role === 'moderator') {
+            return redirect()->route('admin.contacts.index')->with('error', 'You are not authorized to delete contacts.');
+        }
+
         $contact->delete();
 
         return redirect()->route('admin.contacts.index')->with('success', 'Contact deleted successfully.');
