@@ -1,5 +1,9 @@
 <?php
 
+@ini_set('upload_max_filesize', '64M');
+@ini_set('post_max_size', '64M');
+@ini_set('memory_limit', '128M');
+
 error_reporting(E_ALL & ~E_DEPRECATED);
 
 use Illuminate\Foundation\Application;
