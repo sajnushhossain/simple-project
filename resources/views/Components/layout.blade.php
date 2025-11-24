@@ -212,6 +212,10 @@
                     <p class="text-sm text-muted leading-relaxed">&copy; {{ date('Y') }} Simple News. All rights reserved.</p>
                     <p class="text-sm text-muted mt-2 md:mt-0 md:ml-4 leading-relaxed">Developed by <a href="#" class="text-primary hover:underline transition-colors duration-300">Sajnush</a></p>
                 </div>
+                <!-- advertisement -->
+                     <div style="widht:150px; !important">
+                        <x-ad-unit position="footer-banner"  />
+                     </div>
             </div>
         </footer>
         @endif

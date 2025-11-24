@@ -165,8 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: pieChartData.data,
                 backgroundColor: [
                     '#4F46E5',
-                    '#10B981',
                     '#F59E0B',
+                    '#10B981',
                     '#EF4444',
                 ]
             }]

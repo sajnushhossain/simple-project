@@ -9,9 +9,7 @@
                     <span class="inline-block bg-prothomalo-red text-black text-sm font-bold px-3 py-1 rounded-full">
                         {{ $post->category->name }}
                     </span>
-                    @endif
-                    <!-- Advertise -->
-                     <x-ad-unit position="middle-left" />
+                    @endif                   
                     <!-- Title -->
                     <h1 class="font-serif text-3xl md:text-4xl text-prothomalo-dark-gray mb-4 leading-tight">
                         {{ $post->title }}
@@ -42,6 +40,8 @@
                             src="{{ $post->image ? asset('storage/' . $post->image) : 'https://placehold.co/1200x675/f1f1f1/333333?text=Article+Image' }}"
                             alt="{{ $post->title }}">
                     </div>
+                    <!-- Advertise -->
+                     <x-ad-unit position="content-middle" />
 
                     <!-- Post Body -->
                     <div class="prose prose-lg max-w-none text-prothomalo-dark-gray leading-relaxed mb-8">

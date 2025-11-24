@@ -255,7 +255,7 @@
                 }
             }).catch(error => {
                 const toast = document.getElementById('copy-toast');
-                toast.textContent = 'There was an error updating the user role. Please try again.';
+                toast.textContent = 'You cannot change your owner role. This action is restricted by system administrator!';
                 toast.classList.remove('hidden', 'bg-green-500');
                 toast.classList.add('bg-red-500');
 

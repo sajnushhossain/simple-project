@@ -1,6 +1,6 @@
 <x-layout>
     <!-- Advertisement -->
-    <x-ad-unit position="top-banner" />
+    <x-ad-unit position="header-banner" />
     <div class="font-sans">
         @if(empty($featured))
         <div class="container mx-auto px-4 py-20 text-center">
@@ -21,16 +21,18 @@
                 <div class="lg:col-span-2 flex flex-col">
                     <article class="bg-card-background p-4 rounded-lg shadow-sm" >
                         <a href="/post/{{ $featured->slug }}" class="block group">
-                            <div class="relative overflow-hidden mb-4 aspect-video">
+                            <div class="relative overflow-hidden mb-4 aspect-video" style="margin-bottom: 0px; !important;">
                                 <img src="{{ $featured->image ? asset('storage/' . $featured->image) : 'https://images.unsplash.com/photo-1742805382149-3c2f0cd0f300?crop=entropy&cs=srgb&fm=jpg&q=85&w=900' }}"
                                     alt="{{ $featured->title }}"
                                     class="w-full h-[350px] object-cover transition-transform duration-300 group-hover:scale-105"
-                                    width="900" height="495">
+                                    width="900" height="495" style="height: 340px !important;">
                             </div>
                             <h1
-                                class="font-serif text-3xl md:text-4xl text-dark-text mb-2 group-hover:text-primary-red transition-colors leading-tight">
+                                class="font-serif text-3xl md:text-4xl text-dark-text mb-2 group-hover:text-primary-red transition-colors leading-tight" style="margin-top: -40px; !important;">
                                 {{ $featured->title }}
                             </h1>
+                            <!-- Advertisement -->
+                            <!-- <x-ad-unit position="content-middle" /> -->
                             <p class="text-light-text text-base leading-relaxed mb-3">
                                 {{ Str::limit(strip_tags($featured->body), 200) }}
                             </p>
@@ -41,10 +43,10 @@
                     </article>
 
                     <!-- Two Stories Below Featured -->
-                    <div class="mt-8 flex-grow">
+                    <div class="mt-8 flex-grow" style="margin-top: 15px; !important;">
                         @foreach($randomCategories as $category)
                             {{-- <h2 class="font-serif text-2xl text-dark-text mb-4">{{ $category->name }}</h2> --}}
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
                                 @foreach($category->posts as $post)
                                     <article class="bg-card-background p-4 rounded-lg shadow-sm">
                                         <a href="/post/{{ $post->slug }}" class="block group">
@@ -71,7 +73,7 @@
                 </div>
 
                 <!-- Right: 2x2 Thumbnail Grid -->
-                <div class="lg:col-span-1 bg-card-background p-3 rounded-lg shadow-sm">
+                <div class="lg:col-span-1 bg-card-background p-3 rounded-lg shadow-sm" style="padding-top: 0px; !important;">
                     <!-- Advertisement -->
                     <x-ad-unit position="sidebar-square" />
                     <div class="mb-6">
@@ -94,10 +96,14 @@
                                     {{ $post->created_at->diffForHumans() }}
                                 </div>
                             </a>
+                            
                         </article>
                         @endforeach
                     </div>
+                    <!-- Advertisement -->
+                     <x-ad-unit position="bottom-grid" />
                 </div>
+                
             </div>
 
             <!-- Three Column Section -->
@@ -107,7 +113,6 @@
                 @endforeach
             </div>
             
-            <x-ad-unit position="content-middle" />
 
             <!-- Category Sections -->
             @include('components.newspaper-layout', ['categories' => $categories->take(2)])
@@ -142,7 +147,8 @@
                 </div>
             </section>
             @endif
-
+            <!-- Advertisement -->
+            <x-ad-unit position="content-middle" />
             <!-- More News Grid -->
             @if($moreNews->count() > 0)
             <section class="pt-8">
@@ -206,6 +212,7 @@
             </section> -->
             @endif
         </div>
+        <x-ad-unit position="footer-banner" />
         @endif
     </div>
 </x-layout>

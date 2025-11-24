@@ -61,7 +61,7 @@
                                     class="text-blue-600 hover:text-blue-800 mr-4 font-semibold cursor-pointer">Edit</a>
                                 <form method="POST" action="{{ route('admin.posts.destroy', $post) }}"
                                     class="inline-block"
-                                    onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                    >
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"

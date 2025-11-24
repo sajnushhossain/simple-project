@@ -26,7 +26,7 @@ class PostController extends Controller
             ]);
         }
 
-        $rightGrid = $posts->splice(0, 8);
+        $rightGrid = $posts->splice(0, 6);
         $threeColumn = $posts->splice(0, 3);
         $moreNews = $posts->splice(0, 11);
         $aboutToKnowPosts = $posts->splice(0, 7);

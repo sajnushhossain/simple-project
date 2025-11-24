@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(PositionSeeder::class);
         $this->call(DefaultAdminSeeder::class);
         $this->call(ProthomAloPostSeeder::class);
     }
