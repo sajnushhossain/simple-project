@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Maatwebsite\Excel\Facades\Excel;
 use Tests\TestCase;
 
 class AdminAccessTest extends TestCase
@@ -42,5 +43,19 @@ class AdminAccessTest extends TestCase
     {
         $user = User::factory()->create(['email' => 'sajnushhossain.cse@gmail.com']);
         $this->actingAs($user)->get('/admin/posts')->assertOk();
+    }
+
+    /** @test */
+    public function an_admin_can_download_the_monthly_summary()
+    {
+        Excel::fake();
+
+        $admin = User::factory()->create(['role' => 'admin']);
+
+        $this->actingAs($admin)
+            ->get(route('admin.dashboard.download'))
+            ->assertSuccessful();
+
+        Excel::assertDownloaded('monthly-summary.xlsx');
     }
 }

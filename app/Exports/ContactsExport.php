@@ -14,7 +14,8 @@ class ContactsExport implements FromCollection, WithHeadings, WithTitle
      */
     public function collection()
     {
-        return Contact::all(['name', 'email', 'subject', 'message', 'created_at']);
+        return Contact::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->get(['name', 'email', 'subject', 'message', 'created_at']);
     }
 
     public function headings(): array

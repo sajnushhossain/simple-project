@@ -46,7 +46,7 @@
         <!-- Left side: Logo & Hamburger (mobile) -->
         <div class="flex-1 flex items-center justify-start space-x-4">
             <a href="/" class="flex-shrink-0">
-                <img src="{{ asset('images/simple_news.png') }}" alt="Simple News" class="h-20 md:h-24">
+                <img src="{{ asset('images/latenews.png') }}" alt="Simple News" class="h-20 md:h-24">
             </a>
         </div>
 
@@ -54,7 +54,7 @@
         <div class="flex-1 flex items-center justify-end space-x-4">
             
             @foreach($headerPosts as $post)
-                <a href="/post/{{ $post->slug }}" class="text-black hover:text-red-600 font-semibold hidden lg:inline-block">{{ Str::limit($post->title, 40)}}</a>
+                <a href="/post/{{ $post->slug }}" class="text-black hover:text-red-600 font-semibold hidden lg:inline-block">{{ Str::limit($post->title, 20)}}</a>
             @endforeach
             <div class="hidden lg:block">
                 <form id="desktop-search-form" action="/search" method="GET" class="flex items-center border border-gray-300 rounded-full px-2 py-1">

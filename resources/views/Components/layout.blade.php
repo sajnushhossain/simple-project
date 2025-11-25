@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple News</title>
+    <title>Late News</title>
     <meta name="theme-color" content="#0ea5e9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     @stack('styles')
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/latenews.png') }}">
 </head>
 
 <body class="font-sans antialiased {{ request()->is('login') ? 'bg-white' : 'bg-gray-100' }}">
@@ -126,9 +126,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center md:text-left mb-8">
                     <div class="col-span-full lg:col-span-1 mb-6 md:mb-0">
                         <a href="/" class="inline-block">
-                            <img src="{{ asset('images/simple_news.png') }}" alt="Simple News" class="h-10 mb-4 mx-auto md:mx-0">
+                            <img src="{{ asset('images/latenews.png') }}" alt="Simple News" class="h-20 mb-4 mx-auto md:mx-0">
                         </a>
-                        <p class="text-sm text-prothomalo-light-text mx-auto max-w-xs md:max-w-none md:mx-0 leading-relaxed">Simple News is the largest Bengali newspaper from Dhaka, Bangladesh. It is the most popular Bengali newspaper in the world.</p>
+                        <p class="text-sm text-prothomalo-light-text mx-auto max-w-xs md:max-w-none md:mx-0 leading-relaxed">Yesterday’s Headlines, Tomorrow. While other channels focus on "speed" and "accuracy," we focus on making sure the event is definitely over before we talk about it. No rumors, just history.</p>
                     </div>
 
                     <!-- Categories Section -->

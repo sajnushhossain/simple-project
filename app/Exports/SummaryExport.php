@@ -17,10 +17,13 @@ class SummaryExport implements FromCollection, WithHeadings, WithTitle
      */
     public function collection()
     {
-        $postsCount = Post::count();
-        $categoriesCount = Category::count();
-        $contactsCount = Contact::count();
-        $subscriptionsCount = Subscription::count();
+        $startOfMonth = now()->startOfMonth();
+        $endOfMonth = now()->endOfMonth();
+
+        $postsCount = Post::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+        $categoriesCount = Category::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+        $contactsCount = Contact::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+        $subscriptionsCount = Subscription::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
 
         return collect([
             [

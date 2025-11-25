@@ -97,7 +97,7 @@ class DashboardController extends Controller
 
     public function download()
     {
-        return Excel::download(new WebsiteDataExport, 'website-data.xlsx');
+        return Excel::download(new WebsiteDataExport, 'monthly-summary.xlsx');
     }
 
     public function downloadModeratorAccessInfo()

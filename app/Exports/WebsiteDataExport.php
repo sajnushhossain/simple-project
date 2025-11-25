@@ -9,10 +9,10 @@ class WebsiteDataExport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
-            new SummaryExport,
-            new PostsExport,
-            new SubscriptionsExport,
-            new ContactsExport,
+            new SummaryExport(),
+            new PostsExport(),
+            new SubscriptionsExport(),
+            new ContactsExport(),
         ];
     }
 }

@@ -2,32 +2,30 @@
 
 namespace App\Exports;
 
-use App\Models\Subscription;
+use App\Models\Post;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class SubscriptionsExport implements FromCollection, WithHeadings, WithTitle
+class PostsExport implements FromCollection, WithHeadings, WithTitle
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
     public function collection()
     {
-        return Subscription::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
-            ->get(['email', 'created_at']);
+        return Post::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->get(['title', 'slug', 'created_at']);
     }
 
     public function headings(): array
     {
         return [
-            'Email',
+            'Title',
+            'Slug',
             'Created At',
         ];
     }
 
     public function title(): string
     {
-        return 'Subscriptions';
+        return 'Monthly Posts';
     }
 }
