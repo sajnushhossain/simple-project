@@ -124,7 +124,7 @@
         <footer class="bg-black text-white py-10 mt-8">
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center md:text-left mb-8">
-                    <div class="col-span-full lg:col-span-1 mb-6 md:mb-0">
+                    <div class="col-span-full lg:col-span-1 mb-6 md:mb-0" style="margintop: -10px; !important">
                         <a href="/" class="inline-block">
                             <img src="{{ asset('images/latenews.png') }}" alt="Simple News" class="h-20 mb-4 mx-auto md:mx-0">
                         </a>

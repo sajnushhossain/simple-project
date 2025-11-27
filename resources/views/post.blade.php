@@ -28,8 +28,8 @@
                         @if ($post->user)
                         <div class="flex items-center">
                             <i class="far fa-user mr-1"></i>
-                            <span>By <a href="#"
-                                    class="text-prothomalo-red hover:underline font-semibold">{{ $post->user->name }}</a></span>
+                            <span>By <i
+                                    class="text-prothomalo-red hover:underline font-semibold">{{ $post->user->name }}</i></span>
                         </div>
                         @endif
                     </div>
@@ -51,10 +51,10 @@
                     <!-- Share & Back Button -->
                     <div
                         class="mt-8 pt-6 border-t border-prothomalo-border flex flex-wrap items-center justify-between gap-4">
-                        <a href="/blog"
+                        <a href="/"
                             class="inline-flex items-center px-5 py-2 bg-prothomalo-red text-white font-semibold rounded-full hover:bg-red-700 transition-all duration-300 shadow-md" style="background-color: #ee1414ff; !important;">
                             <i class="fas fa-arrow-left mr-2"></i>
-                            Back to Blog
+                            Back to Homepage
                         </a>
 
                         <!-- Share Buttons -->

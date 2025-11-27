@@ -80,7 +80,7 @@
         <div class="flex flex-col h-full">
             <div class="p-4 border-b border-gray-200 flex justify-between items-center">
                 <a href="/" class="flex-shrink-0">
-                    <img src="{{ asset('images/simple_news.png') }}" alt="Prothomalo" class="h-10">
+                    <img src="{{ asset('images/latenews.png') }}" alt="Latenews" class="h-10">
                 </a>
                 <button id="close-mobile-nav" class="text-black hover:text-red-600 text-2xl cursor-pointer">
                     <i class="fas fa-times"></i>
@@ -114,6 +114,9 @@
                     <div class="relative">
                         <img src="{{ Auth::user()->getAvatarUrl() }}" alt="Avatar" class="w-8 h-8 rounded-full mr-2 inline-block" referrerpolicy="no-referrer">
                         <span class="text-black font-semibold">{{ Auth::user()->name }}</span>
+                            @if(Auth::user()->role === 'admin' || Auth::user()->role === 'moderator')
+                                <a href="{{ route('admin.dashboard') }}" class="block w-full text-left py-2 text-sm text-black-900  cursor-pointer" style="text-align:center; margin-left: 5px; !important;">Dashboard</a>
+                            @endif
                         <form method="POST" action="/logout" class="inline">
                             @csrf
                             <button type="submit" class="text-black text-lg font-semibold hover:text-red-600 ml-4">Logout</button>
